@@ -19,10 +19,10 @@ const HOME_LINKS: NavItem[] = [
 ];
 
 const PARTNER_LINKS: NavItem[] = [
-  { label: 'Network Security Partners', href: '/partners' },
-  { label: 'Compliance Partners', href: '/partners' },
-  { label: 'End-Point Security Partners', href: '/partners' },
-  { label: 'Other Brand Partners', href: '/partners' },
+  { label: 'Network Security Partners', href: '/partners#network-security' },
+  { label: 'Compliance Partners', href: '/partners#ssl-compliance' },
+  { label: 'End-Point Security Partners', href: '/partners#endpoint-security' },
+  { label: 'Other Brand Partners', href: '/partners#infrastructure-cloud' },
 ];
 
 export default function Header({

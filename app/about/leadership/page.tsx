@@ -360,7 +360,7 @@ export default function LeadershipPage() {
               </>
             }
           >
-            <Button href="https://symteratech.com/job-openings/" external style={{ whiteSpace: 'nowrap' }}>
+            <Button href="/contact" style={{ whiteSpace: 'nowrap' }}>
               View Career Opportunities
             </Button>
           </DarkCta>

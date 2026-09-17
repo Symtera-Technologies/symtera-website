@@ -93,6 +93,16 @@ lib/                     tokens, html helpers, contact schema
 from content alone: hero with its animated scene, roman-numeral sections, plans,
 the collapsible comparison matrix, FAQ, dark CTA and related links.
 
+## Old URLs
+
+The previous WordPress site used different addresses. Every known old URL is
+mapped in `lib/legacy-redirects.ts` and served as a single-hop permanent
+redirect; the full list, with where each one lands, is in
+`docs/legacy-url-map.csv`. Old URLs with no equivalent, such as theme demo
+pages and tag archives, return the branded 404 page in `app/not-found.tsx`.
+
+`app/sitemap.ts` and `app/robots.ts` publish the new URL set under `SITE_URL`.
+
 ## Contact form
 
 React Hook Form + Zod, with `lib/contact-schema.ts` shared by the client and the

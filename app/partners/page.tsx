@@ -157,9 +157,11 @@ export default function PartnersPage() {
           {PARTNER_SECTIONS.map((g) => (
             <div
               key={g.num}
+              id={g.id}
               data-reveal
               data-stack
               style={{
+                scrollMarginTop: 110,
                 display: 'grid',
                 gridTemplateColumns: 'minmax(0,4fr) minmax(0,8fr)',
                 gap: '20px clamp(32px,5vw,96px)',

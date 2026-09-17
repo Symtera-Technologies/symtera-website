@@ -34,6 +34,8 @@ export const PARTNER_GROUPS: PartnerGroup[] = [
 ];
 
 export interface PartnerSection {
+  /** Anchor id; old /our-partners/* URLs redirect to /partners#<id>. */
+  id: string;
   num: string;
   title: string;
   copy: string;
@@ -42,6 +44,7 @@ export interface PartnerSection {
 
 export const PARTNER_SECTIONS: PartnerSection[] = [
   {
+    id: 'network-security',
     num: 'I',
     title: 'Network Security Partners',
     copy: 'Our network security practice is built on partnerships with the world’s leading firewall and threat protection vendors. Each partner brings unique strengths, and our certified engineers help you choose and deploy the right solution for your specific security requirements and budget.',
@@ -55,6 +58,7 @@ export const PARTNER_SECTIONS: PartnerSection[] = [
     ],
   },
   {
+    id: 'endpoint-security',
     num: 'II',
     title: 'Endpoint Security Partners',
     copy: 'Protecting endpoints — laptops, desktops, servers, and mobile devices — is critical in today’s distributed work environment. Our endpoint security partnerships deliver advanced threat detection, behavioral analysis, and automated response capabilities.',
@@ -64,6 +68,7 @@ export const PARTNER_SECTIONS: PartnerSection[] = [
     ],
   },
   {
+    id: 'ssl-compliance',
     num: 'III',
     title: 'SSL & Compliance Partners',
     copy: 'SSL certificates and compliance tools are essential for securing web transactions, protecting customer data, and meeting regulatory requirements. We partner with the world’s most trusted certificate authorities and compliance solution providers.',
@@ -77,6 +82,7 @@ export const PARTNER_SECTIONS: PartnerSection[] = [
     ],
   },
   {
+    id: 'infrastructure-cloud',
     num: 'IV',
     title: 'Infrastructure & Cloud Partners',
     copy: 'Our infrastructure partnerships with the world’s leading hardware and cloud vendors enable us to design, deploy, and manage enterprise-grade environments that deliver maximum performance, reliability, and value.',
@@ -92,6 +98,7 @@ export const PARTNER_SECTIONS: PartnerSection[] = [
     ],
   },
   {
+    id: 'collaboration-management',
     num: 'V',
     title: 'Collaboration & Management Partners',
     copy: 'Modern businesses need tools that simplify management, automate processes, and enable seamless collaboration across distributed teams. Our partnerships in this space cover backup, hosting management, networking, communications, and surveillance.',
