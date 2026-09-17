@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect } from 'react';
-import { usePathname } from 'next/navigation';
 
 /**
  * Ports the prototype's motion behaviours as one delegated controller so pages
@@ -14,14 +13,22 @@ import { usePathname } from 'next/navigation';
  *   data-parallax    translateY(scrollY * factor)
  *
  * All of it is disabled under prefers-reduced-motion.
+ *
+ * The controller is created once and lives for the whole session. It must not
+ * be rebuilt on route changes: the MutationObserver callback for the new page's
+ * DOM runs before React's effect cleanup, so a per-route rebuild hands the new
+ * sections to an observer that is disconnected a moment later, and they stay
+ * invisible. New pages are picked up by the MutationObserver instead.
  */
 export default function Motion() {
-  const pathname = usePathname();
-
   useEffect(() => {
     const reduced =
       typeof matchMedia === 'function' &&
       matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Hidden elements that have not been revealed yet. Released on teardown so
+    // a remount (Strict Mode, HMR) never inherits hidden, unobserved content.
+    const pending = new Set<HTMLElement>();
 
     const count = (el: HTMLElement) => {
       const to = parseFloat(el.dataset.count || '0');
@@ -41,31 +48,35 @@ export default function Motion() {
       requestAnimationFrame(step);
     };
 
-    const show = (el: HTMLElement) => {
+    const io =
+      typeof IntersectionObserver === 'function'
+        ? new IntersectionObserver(
+            (entries) => {
+              for (const e of entries) {
+                const el = e.target as HTMLElement;
+                // Already scrolled past (deep link, restored scroll position,
+                // anchor jump): show it outright rather than leaving it hidden.
+                if (!e.isIntersecting) {
+                  if (e.boundingClientRect.bottom <= 0) show(el);
+                  continue;
+                }
+                // A section taller than the viewport can never reach ratio 0.1,
+                // so any visible part counts for those.
+                const tall = e.boundingClientRect.height > innerHeight * 0.9;
+                if (e.intersectionRatio >= 0.1 || tall) show(el);
+              }
+            },
+            { threshold: [0, 0.1] },
+          )
+        : null;
+
+    function show(el: HTMLElement) {
+      pending.delete(el);
       el.style.opacity = '1';
       el.style.transform = 'none';
-      io.unobserve(el);
+      io?.unobserve(el);
       if (el.hasAttribute('data-count')) count(el);
-    };
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          const el = e.target as HTMLElement;
-          // Already scrolled past (deep link, restored scroll position, anchor
-          // jump): show it outright rather than leaving it invisible.
-          if (!e.isIntersecting) {
-            if (e.boundingClientRect.bottom <= 0) show(el);
-            continue;
-          }
-          // A section taller than the viewport can never reach ratio 0.1, so
-          // any visible part counts for those.
-          const tall = e.boundingClientRect.height > innerHeight * 0.9;
-          if (e.intersectionRatio >= 0.1 || tall) show(el);
-        }
-      },
-      { threshold: [0, 0.1] },
-    );
+    }
 
     // Tilt cards — bound per element, as in the prototype's onMouseMove/onMouseLeave.
     const onTiltMove = (e: MouseEvent) => {
@@ -91,7 +102,8 @@ export default function Motion() {
         .querySelectorAll<HTMLElement>('[data-reveal]:not([data-seen]), [data-count]:not([data-seen])')
         .forEach((el, i) => {
           el.setAttribute('data-seen', '');
-          if (reduced) {
+          // Without an observer nothing could ever reveal it, so never hide it.
+          if (reduced || !io) {
             if (el.hasAttribute('data-count')) count(el);
             return;
           }
@@ -99,6 +111,7 @@ export default function Motion() {
           el.style.opacity = '0';
           el.style.transform = 'translateY(22px)';
           el.style.transition = `opacity .7s cubic-bezier(.2,.7,.2,1) ${d}ms, transform .7s cubic-bezier(.2,.7,.2,1) ${d}ms, border-color .3s, box-shadow .45s, background .3s`;
+          pending.add(el);
           io.observe(el);
         });
 
@@ -137,6 +150,8 @@ export default function Motion() {
     scan();
     // Re-scan once the streamed page has settled.
     const raf = requestAnimationFrame(scan);
+    // Every later page arrives as a DOM mutation, so this is what handles
+    // client-side navigation.
     const mo = new MutationObserver(scan);
     mo.observe(document.body, { childList: true, subtree: true });
 
@@ -148,7 +163,14 @@ export default function Motion() {
     return () => {
       cancelAnimationFrame(raf);
       mo.disconnect();
-      io.disconnect();
+      io?.disconnect();
+      pending.forEach((el) => {
+        el.removeAttribute('data-seen');
+        el.style.opacity = '';
+        el.style.transform = '';
+        el.style.transition = '';
+      });
+      pending.clear();
       document.removeEventListener('mousemove', magnet);
       window.removeEventListener('scroll', parallax);
       document.querySelectorAll<HTMLElement>('[data-tilt-bound]').forEach((el) => {
@@ -157,7 +179,7 @@ export default function Motion() {
         el.removeAttribute('data-tilt-bound');
       });
     };
-  }, [pathname]);
+  }, []);
 
   return null;
 }
