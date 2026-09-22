@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { PRODUCT_PAGES } from '@/content/products';
 import { decode } from '@/lib/html';
+import { pageMetadata } from '@/lib/seo';
 import ServicePageTemplate from '@/components/pages/ServicePageTemplate';
 
 export function generateStaticParams() {
@@ -12,7 +13,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const page = PRODUCT_PAGES.find((p) => p.slug === slug);
   if (!page) return {};
-  return { title: decode(`${page.title} ${page.accent}`), description: decode(page.intro[0]) };
+  return pageMetadata({
+    title: decode(`${page.title} ${page.accent}`),
+    description: decode(page.intro[0]),
+    path: `/products/${slug}`,
+  });
 }
 
 export default async function ProductDetailPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -29,6 +34,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
   return (
     <ServicePageTemplate
       page={page}
+      path={`/products/${slug}`}
       crumb="Products"
       crumbHref="/products"
       related={related}

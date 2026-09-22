@@ -11,6 +11,8 @@ import { ArrowLeft, Check, ContentIcon } from '@/components/ui/Icons';
 import FaqList from '@/components/ui/FaqList';
 import SceneSvg from '@/components/visuals/SceneSvg';
 import SectionBody from './SectionRenderer';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { serviceSchema, faqPageSchema, breadcrumbSchema } from '@/lib/schema';
 import PlanMatrix from './PlanMatrix';
 
 export type RelatedLink = { nav: string; href: string; icon: string };
@@ -20,13 +22,15 @@ type Props = {
   /** Breadcrumb label and target, e.g. "AI Solutions" → /ai. */
   crumb: string;
   crumbHref: string;
+  /** This page's own path, used for the canonical-matching structured data. */
+  path: string;
   related: RelatedLink[];
   relatedLabel: string;
   /** Product pages point their CTAs at /contact?service=<Product> to preselect it. */
   demoService?: string;
 };
 
-export default function ServicePageTemplate({ page, crumb, crumbHref, related, relatedLabel, demoService }: Props) {
+export default function ServicePageTemplate({ page, crumb, crumbHref, path, related, relatedLabel, demoService }: Props) {
   const contactHref = demoService ? `/contact?service=${encodeURIComponent(demoService)}` : '/contact';
   const svc = page as ServicePage;
   const plans = svc.plans;
@@ -36,6 +40,17 @@ export default function ServicePageTemplate({ page, crumb, crumbHref, related, r
 
   return (
     <>
+      <JsonLd
+        data={serviceSchema({
+          name: `${page.title} ${page.accent}`,
+          description: page.intro[0],
+          path,
+          serviceType: crumb,
+        })}
+      />
+      {page.faq.length > 0 && <JsonLd data={faqPageSchema(page.faq, path)} />}
+      <JsonLd data={breadcrumbSchema([[crumb, crumbHref], [page.nav, path]])} />
+
       <section
         style={{
           position: 'relative',

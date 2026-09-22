@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import { MONO } from '@/lib/tokens';
 import { COMPANY, VALUES } from '@/content/company';
 import { LightSection } from '@/components/ui/Layout';
@@ -7,11 +6,13 @@ import TiltCard from '@/components/ui/TiltCard';
 import Button from '@/components/ui/Button';
 import { ClientLogoMarquee } from '@/components/ui/Marquee';
 import NetworkCanvas from '@/components/visuals/NetworkCanvas';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'About Us',
   description: COMPANY.aboutIntro.slice(0, 180),
-};
+  path: '/about',
+});
 
 const JUMPS: [string, string, string][] = [
   ['Our Mission', '#about-mission', '#8CC63F'],

@@ -1,15 +1,18 @@
-import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import { MONO } from '@/lib/tokens';
 import { COMPANY, OFFICES } from '@/content/company';
 import { LightSection } from '@/components/ui/Layout';
 import ContactForm from '@/components/forms/ContactForm';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { officesSchema } from '@/lib/schema';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'Contact',
   description:
-    'Select the service you need, share your business needs, and our team will contact you with the best suitable solution.',
-};
+      'Select the service you need, share your business needs, and our team will contact you with the best suitable solution.',
+  path: '/contact',
+});
 
 const kicker = (color: string): React.CSSProperties => ({
   display: 'block',
@@ -26,6 +29,8 @@ export default function ContactPage() {
 
   return (
     <>
+      <JsonLd data={officesSchema()} />
+
       <section
         style={{
           position: 'relative',

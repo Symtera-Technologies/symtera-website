@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import Image from 'next/image';
 import { MONO, SERIF } from '@/lib/tokens';
 import { CLIENT_LOGOS } from '@/content/site';
@@ -8,11 +7,13 @@ import TiltCard from '@/components/ui/TiltCard';
 import Counter from '@/components/ui/Counter';
 import Button from '@/components/ui/Button';
 import { Quote } from '@/components/ui/Icons';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'Valuable Clients',
   description: 'We’re trusted worldwide: serving clients across multiple countries.',
-};
+  path: '/clients',
+});
 
 const caption: React.CSSProperties = {
   fontFamily: MONO,

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { AI_PAGES } from '@/content/ai';
 import { decode } from '@/lib/html';
+import { pageMetadata } from '@/lib/seo';
 import ServicePageTemplate from '@/components/pages/ServicePageTemplate';
 
 export function generateStaticParams() {
@@ -12,10 +13,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const page = AI_PAGES.find((p) => p.slug === slug);
   if (!page) return {};
-  return {
+  return pageMetadata({
     title: decode(`${page.title} ${page.accent}`),
     description: decode(page.intro[0]),
-  };
+    path: `/ai/${slug}`,
+  });
 }
 
 export default async function AiServicePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -32,6 +34,7 @@ export default async function AiServicePage({ params }: { params: Promise<{ slug
   return (
     <ServicePageTemplate
       page={page}
+      path={`/ai/${slug}`}
       crumb="AI Solutions"
       crumbHref="/ai"
       related={related}

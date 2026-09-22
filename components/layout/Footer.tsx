@@ -140,6 +140,7 @@ export default function Footer() {
             <Link data-navlink href="/about/certifications" style={colLink}>Certifications</Link>
             <Link data-navlink href="/about/affiliations" style={colLink}>Affiliations</Link>
             <Link data-navlink href="/clients" style={colLink}>Clients</Link>
+            <Link data-navlink href="/faq" style={colLink}>FAQ</Link>
           </div>
         </div>
 

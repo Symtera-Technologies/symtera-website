@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { MONO, SERIF } from '@/lib/tokens';
 import { VENDOR_PROGRAMS } from '@/content/partners';
@@ -7,12 +6,14 @@ import TiltCard from '@/components/ui/TiltCard';
 import Button from '@/components/ui/Button';
 import { ArrowRight } from '@/components/ui/Icons';
 import { OrbitScene } from '@/components/visuals/OrbitScene';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'Our Affiliations',
   description:
-    'Active affiliations with industry organizations, vendor partner programs, academic institutions and professional communities.',
-};
+      'Active affiliations with industry organizations, vendor partner programs, academic institutions and professional communities.',
+  path: '/about/affiliations',
+});
 
 const ASSOCIATIONS: [string, string][] = [
   ['CompTIA:', 'As a member of the Computing Technology Industry Association, we stay current with industry certifications, workforce development initiatives, and best practice frameworks for IT service delivery.'],

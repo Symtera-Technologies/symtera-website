@@ -1,16 +1,17 @@
-import type { Metadata } from 'next';
 import { MONO, SERIF } from '@/lib/tokens';
 import { PARTNER_SECTIONS, PARTNER_CASES } from '@/content/partners';
 import { LightSection, DarkCta, BulletList } from '@/components/ui/Layout';
 import TiltCard from '@/components/ui/TiltCard';
 import Button from '@/components/ui/Button';
 import { SvcScene } from '@/components/visuals/SceneSvg';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'Partners',
   description:
-    'Authorized partnerships with more than 20 leading technology vendors across cybersecurity, networking, cloud computing, infrastructure and enterprise software.',
-};
+      'Authorized partnerships with more than 20 leading technology vendors across cybersecurity, networking, cloud computing, infrastructure and enterprise software.',
+  path: '/partners',
+});
 
 const APPROACH: [string, string][] = [
   [

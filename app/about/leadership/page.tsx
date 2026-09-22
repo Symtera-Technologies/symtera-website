@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { MONO, SERIF } from '@/lib/tokens';
 import { LEADERSHIP } from '@/content/company';
@@ -7,12 +6,14 @@ import TiltCard from '@/components/ui/TiltCard';
 import Button from '@/components/ui/Button';
 import { ArrowUpRight } from '@/components/ui/Icons';
 import { OrbitScene } from '@/components/visuals/OrbitScene';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'Management Team',
   description:
-    'Our founding team brings together decades of combined experience in IT infrastructure, cybersecurity, cloud computing, software development, and business strategy.',
-};
+      'Our founding team brings together decades of combined experience in IT infrastructure, cybersecurity, cloud computing, software development, and business strategy.',
+  path: '/about/leadership',
+});
 
 const EXTENDED_TEAM: [string, string][] = [
   ['Cybersecurity Engineering:', 'Certified security professionals specializing in firewall deployment, endpoint protection, vulnerability assessments, and managed security services.'],

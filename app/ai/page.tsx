@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { MONO } from '@/lib/tokens';
 import { AI_LINES, AI_CAPS, AI_FAQ } from '@/content/site';
@@ -8,12 +7,14 @@ import { LightSection } from '@/components/ui/Layout';
 import { Eyebrow, SectionHeading } from '@/components/ui/Type';
 import { ArrowUpRight, ContentIcon } from '@/components/ui/Icons';
 import NetworkCanvas from '@/components/visuals/NetworkCanvas';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'AI Solutions',
   description:
-    'We harness AI to drive growth and efficiency: scalable and secure systems that meet today’s needs and prepare you for what comes next.',
-};
+      'We harness AI to drive growth and efficiency: scalable and secure systems that meet today’s needs and prepare you for what comes next.',
+  path: '/ai',
+});
 
 export default function AiIndexPage() {
   const cards = AI_LINES.map((l, i) => ({ ...l, page: AI_PAGES[i] }));

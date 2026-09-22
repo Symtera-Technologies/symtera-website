@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { MONO } from '@/lib/tokens';
 import { SERVICE_ROWS, CLOUD_ROWS } from '@/content/site';
@@ -6,12 +5,14 @@ import { CLOUD_PAGES } from '@/content/cloud';
 import { LightSection } from '@/components/ui/Layout';
 import { Eyebrow } from '@/components/ui/Type';
 import { ArrowRight } from '@/components/ui/Icons';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'Services',
   description:
-    'Managed services with a proven track record for regional and global clients: software, cloud, infrastructure, integration, intelligence and growth.',
-};
+      'Managed services with a proven track record for regional and global clients: software, cloud, infrastructure, integration, intelligence and growth.',
+  path: '/services',
+});
 
 export default function ServicesIndexPage() {
   const cloud = CLOUD_ROWS.map((c, i) => ({

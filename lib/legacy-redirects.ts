@@ -12,7 +12,7 @@
  *
  * Deliberately absent, so they return the site's 404 page:
  *   - WordPress theme demo pages (/elements, /typography, /sample-page,
- *     /coming-soon, /ot_footer_builders/*, /gina-bruno, /our-process, /faqs)
+ *     /coming-soon, /ot_footer_builders/*, /gina-bruno, /our-process)
  *   - blog, category, tag and author archives, which have no equivalent
  *   - /scatter, a slot-machine term captured as a redirect in January 2024,
  *     which looks like earlier spam and should not pass on any authority
@@ -30,8 +30,12 @@ export const LEGACY_REDIRECTS: LegacyRedirect[] = [
   { source: '/certifications', destination: '/about/certifications' },
   { source: '/our-affiliations', destination: '/about/affiliations' },
   { source: '/ai-services', destination: '/ai' },
+  // The old site's eight AI sub-pages use the same slugs as the new ones.
+  { source: '/ai-services/:slug', destination: '/ai/:slug' },
   { source: '/our-client', destination: '/clients' },
   { source: '/contacts', destination: '/contact' },
+  { source: '/request-a-solution', destination: '/contact' },
+  { source: '/faqs', destination: '/faq' },
 
   { source: '/software-development', destination: '/services/software-development' },
   { source: '/e-commerce-development', destination: '/services/e-commerce-development' },
@@ -44,6 +48,7 @@ export const LEGACY_REDIRECTS: LegacyRedirect[] = [
   { source: '/cloud-enterprise-server', destination: '/cloud/cloud-enterprise-server' },
   { source: '/linux-hosting', destination: '/cloud/linux-hosting' },
   { source: '/window-hosting', destination: '/cloud/windows-hosting' },
+  { source: '/windows-hosting', destination: '/cloud/windows-hosting' },
   { source: '/shared-hosting-with-enterprise-email', destination: '/cloud/shared-hosting-plus' },
 
   { source: '/symscan', destination: '/products/symscan' },

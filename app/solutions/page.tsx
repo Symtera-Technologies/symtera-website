@@ -1,16 +1,17 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { MONO } from '@/lib/tokens';
 import { SOLUTIONS, INDUSTRIES } from '@/content/site';
 import { LightSection } from '@/components/ui/Layout';
 import { Eyebrow } from '@/components/ui/Type';
 import { ArrowUpRight } from '@/components/ui/Icons';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'Solutions',
   description:
-    'Tell us what the business needs to do differently. We map it to the right mix of AI, software, cloud, security and infrastructure.',
-};
+      'Tell us what the business needs to do differently. We map it to the right mix of AI, software, cloud, security and infrastructure.',
+  path: '/solutions',
+});
 
 export default function SolutionsPage() {
   return (

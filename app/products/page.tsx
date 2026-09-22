@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { MONO } from '@/lib/tokens';
 import { PRODUCT_PAGES } from '@/content/products';
@@ -7,11 +6,13 @@ import { stripTags } from '@/lib/html';
 import { LightSection } from '@/components/ui/Layout';
 import { ArrowUpRight, ContentIcon } from '@/components/ui/Icons';
 import SceneSvg from '@/components/visuals/SceneSvg';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'Products',
   description: 'Cloud-based systems for HR, operations, healthcare and property, built and supported by Symtera.',
-};
+  path: '/products',
+});
 
 export default function ProductsIndexPage() {
   return (

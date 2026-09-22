@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { MONO, SERIF } from '@/lib/tokens';
 import { FRAMEWORKS } from '@/content/partners';
@@ -7,12 +6,14 @@ import TiltCard from '@/components/ui/TiltCard';
 import Button from '@/components/ui/Button';
 import { ArrowRight } from '@/components/ui/Icons';
 import { OrbitScene, SealScene } from '@/components/visuals/OrbitScene';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'Certifications',
   description:
-    'Our dual ISO certifications — ISO 9001:2015 and ISO/IEC 27001:2013 — mean every process, project and client interaction is governed by rigorously audited frameworks.',
-};
+      'Our dual ISO certifications — ISO 9001:2015 and ISO/IEC 27001:2013 — mean every process, project and client interaction is governed by rigorously audited frameworks.',
+  path: '/about/certifications',
+});
 
 const QMS_BENEFITS: [string, string][] = [
   ['Consistent Project Quality:', 'Every project follows documented processes with defined quality checkpoints, ensuring nothing falls through the cracks regardless of project size or complexity.'],
