@@ -49,8 +49,7 @@ images and 500s on every route except `/`.
    | Application startup file | `server.js` |
 
 3. Add the environment variables in that same screen, not in a `.env` file,
-   because Passenger does not read one: `RESEND_API_KEY`, `CONTACT_TO`,
-   `CONTACT_FROM`.
+   because Passenger does not read one. See **Email** below for which ones.
 4. Click **Run NPM Install**, then open the terminal it offers and run the
    build. Raise the heap first if the plan is memory constrained:
 
@@ -86,7 +85,7 @@ rm -f symtera-web/.htaccess          # the Passenger .htaccess belongs to public
 
 Then point the application root at `symtera-web` in Application Manager and hit
 Stop and Start, which regenerates `public_html/.htaccess` with the right
-Passenger block. Rotate `RESEND_API_KEY` afterwards, since the deployment
+Passenger block. Rotate the mail credentials afterwards, since the deployment
 directory was publicly readable.
 
 ## Permissions
@@ -102,6 +101,44 @@ find . -type f -not -path "./node_modules/*" -exec chmod 644 {} \;
 
 Leave the home directory at cPanel's default of 711. Everything must be owned by
 the cPanel user, never root.
+
+## Email
+
+`/api/contact` has two transports and chooses between them at runtime: SMTP
+whenever `SMTP_HOST` is set, the Resend API otherwise. Switching is a variable
+change and a restart, never a rebuild.
+
+**Through a cPanel mailbox.** Create `website@symteratech.com` in Email
+Accounts, then set:
+
+| Variable | Value |
+| --- | --- |
+| `SMTP_HOST` | `mail.symteratech.com` |
+| `SMTP_PORT` | `465` |
+| `SMTP_USER` | `website@symteratech.com` |
+| `SMTP_PASSWORD` | that mailbox's password |
+| `CONTACT_TO` | `sales@symteratech.com` |
+| `CONTACT_FROM` | `Symtera Website <website@symteratech.com>` |
+
+`CONTACT_FROM` has to be a mailbox that exists on the server; anything else is
+rejected or lands in spam. If the connection fails on the certificate, the
+server is presenting one for its own hostname: prefer putting that hostname in
+`SMTP_HOST`, and use `SMTP_TLS_REJECT_UNAUTHORIZED=false` only if you cannot.
+
+**Through Resend.** Verify the domain in Resend, add the DNS records it gives
+you in Zone Editor, then set `RESEND_API_KEY`, `CONTACT_TO` and `CONTACT_FROM`,
+and leave `SMTP_HOST` unset.
+
+Either way, test after restarting:
+
+```bash
+curl -s -X POST https://your-domain/api/contact   -H 'Content-Type: application/json'   -d '{"fullName":"Test User","email":"you@example.com","service":"AI Solutions","message":"transport check"}'
+```
+
+`{"ok":true}` means both the sales mail and the auto-reply were accepted. A 502
+names the failing transport and the server's own error in `stderr.log`, and a
+500 means neither transport is configured. The route allows 5 submissions per
+IP per 10 minutes.
 
 ## Where errors go
 

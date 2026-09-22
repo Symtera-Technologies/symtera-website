@@ -1,11 +1,8 @@
 import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
 import { contactSchema, type ContactInput } from '@/lib/contact-schema';
+import { CONTACT_TO, mailTransport, sendMail } from '@/lib/mailer';
 
 export const runtime = 'nodejs';
-
-const SALES_INBOX = process.env.CONTACT_TO ?? 'sales@symteratech.com';
-const FROM = process.env.CONTACT_FROM ?? 'Symtera Website <website@symteratech.com>';
 
 /**
  * In-memory rate limit: 5 submissions per IP per 10 minutes. Swap for
@@ -85,43 +82,37 @@ export async function POST(request: Request) {
   // Honeypot filled → accept silently so the bot learns nothing.
   if (data.website) return NextResponse.json({ ok: true });
 
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    console.error('[contact] RESEND_API_KEY is not set; submission was not emailed.', {
+  const transport = mailTransport();
+  if (!transport) {
+    console.error('[contact] no mail transport configured; submission was not emailed.', {
       service: data.service,
       email: data.email,
     });
     return NextResponse.json({ error: 'Email is not configured on this environment.' }, { status: 500 });
   }
 
-  const resend = new Resend(apiKey);
+  const sent = await sendMail({
+    to: CONTACT_TO,
+    replyTo: data.email,
+    subject: `[Website] ${data.service} — ${data.fullName}`,
+    html: salesEmail(data),
+  });
 
-  try {
-    const sent = await resend.emails.send({
-      from: FROM,
-      to: SALES_INBOX,
-      replyTo: data.email,
-      subject: `[Website] ${data.service} — ${data.fullName}`,
-      html: salesEmail(data),
+  if (!sent.ok) {
+    console.error(`[contact] ${transport} rejected the sales email: ${sent.error}`, {
+      service: data.service,
+      email: data.email,
     });
-
-    if (sent.error) {
-      console.error('[contact] Resend rejected the sales email', sent.error);
-      return NextResponse.json({ error: 'We could not send your request. Please email sales@symteratech.com.' }, { status: 502 });
-    }
-
-    // Auto-reply is best effort: the request is already recorded with sales.
-    const reply = await resend.emails.send({
-      from: FROM,
-      to: data.email,
-      subject: 'We received your request — Symtera Technologies',
-      html: autoReply(data),
-    });
-    if (reply.error) console.error('[contact] auto-reply failed', reply.error);
-
-    return NextResponse.json({ ok: true });
-  } catch (err) {
-    console.error('[contact] unexpected failure', err);
     return NextResponse.json({ error: 'We could not send your request. Please email sales@symteratech.com.' }, { status: 502 });
   }
+
+  // Auto-reply is best effort: the request is already recorded with sales.
+  const reply = await sendMail({
+    to: data.email,
+    subject: 'We received your request — Symtera Technologies',
+    html: autoReply(data),
+  });
+  if (!reply.ok) console.error(`[contact] auto-reply failed: ${reply.error}`);
+
+  return NextResponse.json({ ok: true });
 }

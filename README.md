@@ -18,11 +18,21 @@ npm run build && npm start
 Copy `.env.example` to `.env.local` and fill it in before the contact form can
 deliver mail:
 
+`/api/contact` sends through SMTP when `SMTP_HOST` is set and through the
+Resend API otherwise, so a deployment moves between the two by adding or
+removing variables and restarting. With neither, the route returns 500 and logs
+the submission.
+
 | Variable | Purpose |
 | --- | --- |
-| `RESEND_API_KEY` | Required. Without it `/api/contact` returns 500 and logs the submission. |
+| `SMTP_HOST` | Mail server, e.g. `mail.symteratech.com`. Its presence selects SMTP. |
+| `SMTP_PORT` | Defaults to 465 (implicit TLS). 587 is used with STARTTLS. |
+| `SMTP_USER` / `SMTP_PASSWORD` | Mailbox credentials. Omit both for an unauthenticated relay. |
+| `SMTP_SECURE` | Overrides the TLS mode inferred from the port. |
+| `SMTP_TLS_REJECT_UNAUTHORIZED` | `false` accepts a certificate that does not name `SMTP_HOST`. |
+| `RESEND_API_KEY` | Used when `SMTP_HOST` is absent. |
 | `CONTACT_TO` | Inbox for requests. Defaults to `sales@symteratech.com`. |
-| `CONTACT_FROM` | Verified Resend sender. Defaults to `website@symteratech.com`. |
+| `CONTACT_FROM` | Sender: a real mailbox for SMTP, a verified sender for Resend. |
 
 ## How the design was ported
 
