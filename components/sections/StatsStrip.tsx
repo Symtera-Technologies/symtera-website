@@ -2,7 +2,7 @@ import { MONO } from '@/lib/tokens';
 import Counter from '@/components/ui/Counter';
 
 const STATS: { to: number; from?: number; label: React.ReactNode; color?: string }[] = [
-  { to: 2019, from: 1990, label: 'Founded in Lahore' },
+  { to: 2019, from: 1990, label: 'Founded' },
   { to: 2, label: <>Offices · USA &amp; Pakistan</> },
   { to: 27, label: 'Technology partners', color: '#4FB8E8' },
   { to: 8, label: 'AI service lines', color: '#8CC63F' },
