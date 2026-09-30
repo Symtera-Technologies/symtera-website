@@ -33,6 +33,12 @@ the submission.
 | `RESEND_API_KEY` | Used when `SMTP_HOST` is absent. |
 | `CONTACT_TO` | Inbox for requests. Defaults to `sales@symteratech.com`. |
 | `CONTACT_FROM` | Sender: a real mailbox for SMTP, a verified sender for Resend. |
+| `SITE_URL` | Origin for the sitemap, robots.txt and the logo in both emails. |
+
+Both mails are built in `lib/email-templates.ts`: the enquiry that goes to
+`CONTACT_TO` and the acknowledgement the visitor receives, each with an HTML
+and a plain-text part. They are tables with inline styles rather than the
+site's components, because email clients have no flexbox, grid or web fonts.
 
 ## How the design was ported
 

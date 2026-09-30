@@ -20,6 +20,8 @@ export interface Mail {
   to: string;
   subject: string;
   html: string;
+  /** Plain-text alternative, for clients that refuse HTML and for spam scores. */
+  text?: string;
   replyTo?: string;
 }
 
@@ -83,6 +85,7 @@ async function sendViaSmtp(mail: Mail): Promise<SendResult> {
       replyTo: mail.replyTo,
       subject: mail.subject,
       html: mail.html,
+      text: mail.text,
     });
     return { ok: true };
   } catch (err) {
@@ -101,6 +104,7 @@ async function sendViaResend(mail: Mail): Promise<SendResult> {
       replyTo: mail.replyTo,
       subject: mail.subject,
       html: mail.html,
+      text: mail.text,
     });
     if (sent.error) return { ok: false, error: sent.error.message };
     return { ok: true };

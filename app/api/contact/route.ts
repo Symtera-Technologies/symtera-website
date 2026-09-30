@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { contactSchema, type ContactInput } from '@/lib/contact-schema';
+import { contactSchema } from '@/lib/contact-schema';
+import { clientAcknowledgement, salesNotification } from '@/lib/email-templates';
 import { CONTACT_TO, mailTransport, sendMail } from '@/lib/mailer';
 
 export const runtime = 'nodejs';
@@ -20,36 +21,6 @@ function rateLimited(ip: string): boolean {
   hits.set(ip, recent);
   if (hits.size > 5000) hits.clear();
   return recent.length > MAX_PER_WINDOW;
-}
-
-const esc = (s: string) =>
-  s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-
-function row(k: string, v?: string | string[]) {
-  const value = Array.isArray(v) ? v.join(', ') : v;
-  if (!value) return '';
-  return `<tr><td style="padding:6px 14px 6px 0;color:#4E5D6C;white-space:nowrap;vertical-align:top">${esc(k)}</td><td style="padding:6px 0;color:#101C2B">${esc(value).replace(/\n/g, '<br>')}</td></tr>`;
-}
-
-function salesEmail(d: ContactInput) {
-  return `<div style="font-family:system-ui,sans-serif;font-size:15px;line-height:1.6;color:#101C2B">
-<h2 style="margin:0 0 4px;font-weight:500">New website request</h2>
-<p style="margin:0 0 18px;color:#4E5D6C">${esc(d.service)} — ${esc(d.fullName)}</p>
-<table style="border-collapse:collapse">
-${row('Name', d.fullName)}${row('Email', d.email)}${row('Phone', d.phone)}${row('Company', d.company)}
-${row('Service', d.service)}${row('Requirement', d.requirementType)}${row('Features', d.features)}
-${row('Existing system', d.existingSystem)}${row('Timeline', d.timeline)}${row('Budget', d.budget)}
-${row('Message', d.message)}
-</table></div>`;
-}
-
-function autoReply(d: ContactInput) {
-  return `<div style="font-family:system-ui,sans-serif;font-size:15px;line-height:1.6;color:#101C2B">
-<p>Hi ${esc(d.fullName.split(' ')[0])},</p>
-<p>Thank you for contacting Symtera Technologies. We have received your request about <strong>${esc(d.service)}</strong> and a member of our team will get back to you within 24 hours.</p>
-<p>If it is urgent, call us on +92 3 111 119 120 (Lahore) or +1 (646) 505-7083 (New Jersey).</p>
-<p style="margin-top:22px;color:#4E5D6C">— Symtera Technologies<br>Expanding Possibilities</p>
-</div>`;
 }
 
 export async function POST(request: Request) {
@@ -91,11 +62,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Email is not configured on this environment.' }, { status: 500 });
   }
 
+  const sales = salesNotification(data);
   const sent = await sendMail({
     to: CONTACT_TO,
     replyTo: data.email,
-    subject: `[Website] ${data.service} — ${data.fullName}`,
-    html: salesEmail(data),
+    subject: sales.subject,
+    html: sales.html,
+    text: sales.text,
   });
 
   if (!sent.ok) {
@@ -106,11 +79,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'We could not send your request. Please email sales@symteratech.com.' }, { status: 502 });
   }
 
-  // Auto-reply is best effort: the request is already recorded with sales.
+  // The acknowledgement is best effort: the request is already with sales.
+  const ack = clientAcknowledgement(data);
   const reply = await sendMail({
     to: data.email,
-    subject: 'We received your request — Symtera Technologies',
-    html: autoReply(data),
+    subject: ack.subject,
+    html: ack.html,
+    text: ack.text,
   });
   if (!reply.ok) console.error(`[contact] auto-reply failed: ${reply.error}`);
 

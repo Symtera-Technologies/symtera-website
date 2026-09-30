@@ -129,6 +129,9 @@ server is presenting one for its own hostname: prefer putting that hostname in
 you in Zone Editor, then set `RESEND_API_KEY`, `CONTACT_TO` and `CONTACT_FROM`,
 and leave `SMTP_HOST` unset.
 
+Set `SITE_URL` to the origin the site is actually served from as well: both
+mails pull the logo from it, and a wrong value delivers a broken image.
+
 Either way, test after restarting:
 
 ```bash
