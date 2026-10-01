@@ -1,5 +1,10 @@
-// Verbatim from the FAQ page on symteratech.com, captured September 2026.
-// 24 questions across 8 categories.
+// From the FAQ page on symteratech.com, captured September 2026. 24 questions
+// across 8 categories, verbatim apart from three corrections: the contact
+// address (the old page said info@, every other page says sales@), the name of
+// the page people are sent to (Request a Solution is no longer a page of its
+// own; it is the form on the contact page) and the response time, which is
+// stated as one business day
+// here, in the page copy and in the acknowledgement email.
 
 export interface FaqCategory {
   /** Anchor id, used for the in-page contents list. */
@@ -16,13 +21,13 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       ['What does Symtera Technologies do?',
         'Symtera Technologies is a full-service IT solutions company specializing in AI and intelligent automation, cloud services, cybersecurity, custom software development, web and mobile applications, e-commerce solutions, digital marketing, and IT infrastructure management. We serve businesses across the United States and internationally from our offices in Oakhurst, New Jersey (USA) and Lahore, Pakistan.'],
       ['Where are your offices located?',
-        'US headquarters: 1806 State Route 35, Suite 304, Oakhurst, NJ 07755, USA. Pakistan office: 263 H1, Johar Town, Lahore, Punjab, Pakistan. Phone (US): +1 (646) 505-7083. Email: info@symteratech.com'],
+        'US headquarters: 1806 State Route 35, Suite 304, Oakhurst, NJ 07755, USA. Pakistan office: 263 H1, Johar Town, Lahore, Punjab, Pakistan. Phone (US): +1 (646) 505-7083. Email: sales@symteratech.com'],
       ['What industries do you serve?',
         'We work with clients across multiple industries including healthcare, retail and e-commerce, financial services, education, manufacturing, logistics, government, and professional services. Our solutions are customized to meet the specific compliance requirements and operational needs of each sector.'],
       ['Is Symtera Technologies certified?',
         'Yes. We hold ISO 9001:2015 (Quality Management Systems) and ISO/IEC 27001:2013 (Information Security Management) certifications, demonstrating our commitment to quality processes and data security. Learn more on our Certifications page.'],
       ['How do I request a proposal or consultation?',
-        'Visit our Request a Solution page and fill out the form with your project details. We typically respond within 24 business hours with an initial consultation — at no cost and no obligation.'],
+        'Visit our contact page and fill out the form with your project details. We typically respond within one business day with an initial consultation — at no cost and no obligation.'],
     ],
   },
   {

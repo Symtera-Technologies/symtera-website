@@ -22,6 +22,8 @@ type Props = {
   /** Breadcrumb label and target, e.g. "AI Solutions" → /ai. */
   crumb: string;
   crumbHref: string;
+  /** schema.org serviceType. Defaults to the crumb, which names the section. */
+  serviceType?: string;
   /** This page's own path, used for the canonical-matching structured data. */
   path: string;
   related: RelatedLink[];
@@ -30,7 +32,7 @@ type Props = {
   demoService?: string;
 };
 
-export default function ServicePageTemplate({ page, crumb, crumbHref, path, related, relatedLabel, demoService }: Props) {
+export default function ServicePageTemplate({ page, crumb, crumbHref, serviceType, path, related, relatedLabel, demoService }: Props) {
   const contactHref = demoService ? `/contact?service=${encodeURIComponent(demoService)}` : '/contact';
   const svc = page as ServicePage;
   const plans = svc.plans;
@@ -45,7 +47,7 @@ export default function ServicePageTemplate({ page, crumb, crumbHref, path, rela
           name: `${page.title} ${page.accent}`,
           description: page.intro[0],
           path,
-          serviceType: crumb,
+          serviceType: serviceType ?? crumb,
         })}
       />
       {page.faq.length > 0 && <JsonLd data={faqPageSchema(page.faq, path)} />}

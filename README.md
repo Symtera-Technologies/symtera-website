@@ -40,6 +40,11 @@ Both mails are built in `lib/email-templates.ts`: the enquiry that goes to
 and a plain-text part. They are tables with inline styles rather than the
 site's components, because email clients have no flexbox, grid or web fonts.
 
+Changing the copy in `content/` means bumping `LAST_CONTENT_CHANGE` in
+`app/sitemap.ts`. It is the `lastmod` every sitemap entry carries, and it is a
+constant rather than the build time so that a rebuild does not tell search
+engines all 36 pages changed.
+
 ## How the design was ported
 
 The handoff is an HTML prototype, not production code. Colors, type, spacing and

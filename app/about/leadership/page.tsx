@@ -7,6 +7,8 @@ import Button from '@/components/ui/Button';
 import { ArrowUpRight } from '@/components/ui/Icons';
 import { OrbitScene } from '@/components/visuals/OrbitScene';
 import { pageMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { breadcrumbSchema } from '@/lib/schema';
 
 export const metadata = pageMetadata({
   title: 'Management Team',
@@ -124,6 +126,8 @@ const splitRow: React.CSSProperties = {
 export default function LeadershipPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema([['About Us', '/about'], ['Management Team', '/about/leadership']])} />
+
       <section
         style={{
           position: 'relative',
@@ -169,7 +173,7 @@ export default function LeadershipPage() {
               marginBottom: 24,
             }}
           >
-            Home / Management Team
+            Home / About Us / Management Team
           </span>
           <h1
             data-hero-rise

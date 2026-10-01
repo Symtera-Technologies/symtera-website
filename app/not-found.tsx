@@ -5,9 +5,18 @@ import Button from '@/components/ui/Button';
 import { LightSection } from '@/components/ui/Layout';
 import { ArrowUpRight } from '@/components/ui/Icons';
 
-// Next marks 404 responses noindex on its own.
+/**
+ * Next marks 404 responses noindex on its own, but the root layout's
+ * index, follow was inherited on top of it, so the page served two robots tags
+ * that contradicted each other. Declaring it here replaces the inherited one.
+ * Next still emits its own, so the page carries two tags that agree.
+ *
+ * follow stays true deliberately: this page's job is to hand a crawler arriving
+ * from a dead WordPress URL the six destinations below.
+ */
 export const metadata: Metadata = {
   title: 'Page not found',
+  robots: { index: false, follow: true },
 };
 
 /**

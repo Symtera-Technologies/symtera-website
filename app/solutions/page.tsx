@@ -5,6 +5,8 @@ import { LightSection } from '@/components/ui/Layout';
 import { Eyebrow } from '@/components/ui/Type';
 import { ArrowUpRight } from '@/components/ui/Icons';
 import { pageMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { breadcrumbSchema } from '@/lib/schema';
 
 export const metadata = pageMetadata({
   title: 'Solutions',
@@ -16,6 +18,8 @@ export const metadata = pageMetadata({
 export default function SolutionsPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema([['Solutions', '/solutions']])} />
+
       <section
         style={{
           position: 'relative',

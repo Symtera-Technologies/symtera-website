@@ -9,8 +9,8 @@ https://symteratech.com/2019/08/28/best-practices-seo-syndicated-content/,https:
 https://symteratech.com/2019/09/24/a-guide-to-google-seo-algorithm-updates/,https://symteratech.com/services/seo,308 redirect,Internet Archive
 https://symteratech.com/2019/11/21/15-seo-best-practices-website-architecture/,https://symteratech.com/services/seo,308 redirect,Internet Archive
 https://symteratech.com/2019/11/21/seo-best-practices-mobile-friendliness/,https://symteratech.com/services/seo,308 redirect,Internet Archive
-https://symteratech.com/2021/07/13/when-its-time-for-a-business-to-change-old-tech-with-the-new-tech-of-business-it-solutions/,https://symteratech.com/services,308 redirect,Internet Archive
-https://symteratech.com/2021/07/14/how-managed-it-solutions-can-leverage-my-business/,https://symteratech.com/services,308 redirect,Internet Archive
+https://symteratech.com/2021/07/13/when-its-time-for-a-business-to-change-old-tech-with-the-new-tech-of-business-it-solutions/,https://symteratech.com/solutions,308 redirect,Internet Archive
+https://symteratech.com/2021/07/14/how-managed-it-solutions-can-leverage-my-business/,https://symteratech.com/solutions,308 redirect,Internet Archive
 https://symteratech.com/about-company/,https://symteratech.com/about,308 redirect,Internet Archive
 https://symteratech.com/about-us/,https://symteratech.com/about,308 redirect,old menu (2026)
 https://symteratech.com/ai-services/,https://symteratech.com/ai,308 redirect,old menu (2026)
@@ -46,7 +46,7 @@ https://symteratech.com/elements/,,404 (no equivalent),Internet Archive
 https://symteratech.com/enterprise-email-solutions/,https://symteratech.com/cloud/enterprise-email-solutions,308 redirect,old menu (2026)
 https://symteratech.com/faqs/,,404 (no equivalent),Internet Archive
 https://symteratech.com/favicon.ico/,https://symteratech.com/favicon.ico,308 redirect,Internet Archive
-https://symteratech.com/gina-bruno/,,404 (no equivalent),Internet Archive
+https://symteratech.com/gina-bruno/,https://symteratech.com/about/leadership,308 redirect,Internet Archive
 https://symteratech.com/it-infrastructure/,https://symteratech.com/services/it-infrastructure,308 redirect,old menu (2026)
 https://symteratech.com/it-infrastructure-blog/,https://symteratech.com/services/it-infrastructure,308 redirect,Internet Archive
 https://symteratech.com/it-services/,https://symteratech.com/services,308 redirect,Google index
@@ -117,7 +117,7 @@ https://symteratech.com/our-partners/other-brand-partners/lenovo/,https://symter
 https://symteratech.com/our-partners/other-brand-partners/microsoft/,https://symteratech.com/partners#infrastructure-cloud,308 redirect,old menu (2026)
 https://symteratech.com/our-partners/other-brand-partners/ubiquiti/,https://symteratech.com/partners#collaboration-management,308 redirect,old menu (2026)
 https://symteratech.com/our-partners/other-brand-partners/veeam/,https://symteratech.com/partners#collaboration-management,308 redirect,old menu (2026)
-https://symteratech.com/our-process/,,404 (no equivalent),Internet Archive
+https://symteratech.com/our-process/,https://symteratech.com/about,308 redirect,Internet Archive
 https://symteratech.com/parousia/,https://symteratech.com/products,308 redirect,Internet Archive
 https://symteratech.com/patient-management-system/,https://symteratech.com/products/patient-management-system,308 redirect,old menu (2026)
 https://symteratech.com/pay-per-click/,https://symteratech.com/services/seo,308 redirect,Internet Archive
@@ -158,7 +158,7 @@ https://symteratech.com/seo/,https://symteratech.com/services/seo,308 redirect,o
 https://symteratech.com/services/,https://symteratech.com/services,same URL,old menu (2026)
 https://symteratech.com/shared-hosting/,https://symteratech.com/cloud/shared-hosting-plus,308 redirect,Internet Archive
 https://symteratech.com/shared-hosting-with-enterprise-email/,https://symteratech.com/cloud/shared-hosting-plus,308 redirect,old menu (2026)
-https://symteratech.com/shop/,https://symteratech.com/contact,308 redirect,Internet Archive
+https://symteratech.com/shop/,https://symteratech.com/products,308 redirect,Internet Archive
 https://symteratech.com/social-media/,https://symteratech.com/services/social-media,308 redirect,old menu (2026)
 https://symteratech.com/software-development/,https://symteratech.com/services/software-development,308 redirect,old menu (2026)
 https://symteratech.com/solutions/,https://symteratech.com/solutions,same URL,old menu (2026)

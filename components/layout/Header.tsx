@@ -167,7 +167,7 @@ export default function Header({
             {menuItem('ai', 'AI Solutions', '/ai', aiLinks, true)}
             {menuItem('products', 'Products', '/products', productLinks)}
             {menuItem('services', 'Services', '/services', serviceLinks)}
-            {menuItem('cloud', 'Cloud', cloudLinks[0]?.href ?? '/services', cloudLinks)}
+            {menuItem('cloud', 'Cloud', '/services', cloudLinks)}
             {menuItem('partners', 'Partners', '/partners', PARTNER_LINKS)}
             <Link
               data-navlink

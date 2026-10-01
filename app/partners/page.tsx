@@ -5,6 +5,8 @@ import TiltCard from '@/components/ui/TiltCard';
 import Button from '@/components/ui/Button';
 import { SvcScene } from '@/components/visuals/SceneSvg';
 import { pageMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { breadcrumbSchema } from '@/lib/schema';
 
 export const metadata = pageMetadata({
   title: 'Partners',
@@ -35,6 +37,8 @@ const APPROACH: [string, string][] = [
 export default function PartnersPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema([['Partners', '/partners']])} />
+
       <section
         style={{
           position: 'relative',

@@ -8,6 +8,8 @@ import { Eyebrow, SectionHeading } from '@/components/ui/Type';
 import { ArrowUpRight, ContentIcon } from '@/components/ui/Icons';
 import NetworkCanvas from '@/components/visuals/NetworkCanvas';
 import { pageMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { breadcrumbSchema } from '@/lib/schema';
 
 export const metadata = pageMetadata({
   title: 'AI Solutions',
@@ -21,6 +23,8 @@ export default function AiIndexPage() {
 
   return (
     <>
+      <JsonLd data={breadcrumbSchema([['AI Solutions', '/ai']])} />
+
       <section
         style={{
           position: 'relative',

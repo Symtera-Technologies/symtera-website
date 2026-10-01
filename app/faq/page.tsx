@@ -8,7 +8,7 @@ import { LightSection, DarkCta } from '@/components/ui/Layout';
 import { FaqCard } from '@/components/ui/FaqList';
 import Button from '@/components/ui/Button';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { faqPageSchema } from '@/lib/schema';
+import { faqPageSchema, breadcrumbSchema } from '@/lib/schema';
 
 export const metadata = pageMetadata({
   title: 'Frequently Asked Questions',
@@ -22,6 +22,8 @@ export default function FaqPage() {
 
   return (
     <>
+      <JsonLd data={breadcrumbSchema([['FAQ', '/faq']])} />
+
       <JsonLd data={faqPageSchema(FAQ_ALL, '/faq')} />
 
       <section
@@ -85,7 +87,7 @@ export default function FaqPage() {
             }}
           >
             The questions we are asked most often, across services, delivery and working with us. If yours is not here,
-            ask us directly and we will answer within 24 hours.
+            ask us directly and we will answer within one business day.
           </p>
 
           <nav
@@ -181,8 +183,8 @@ export default function FaqPage() {
                   Still have questions?
                 </h2>
                 <p style={{ fontSize: 16, lineHeight: 1.6, color: '#C9D3DD', margin: 0, maxWidth: '56ch' }}>
-                  Tell us what you are trying to do and our team will come back with a straight answer, usually the same
-                  working day. You can also email{' '}
+                  Tell us what you are trying to do and our team will come back with a straight answer within one
+                  business day. You can also email{' '}
                   <Link href={`mailto:${COMPANY.email}`} style={{ color: '#8CC63F' }}>
                     {COMPANY.email}
                   </Link>{' '}

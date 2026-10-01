@@ -252,7 +252,7 @@ export default function ContactForm() {
               animation: 'sym-pulse 2s ease-in-out infinite',
             }}
           />
-          Replies within 24h
+          Replies within one business day
         </span>
       </div>
 
@@ -530,7 +530,7 @@ export default function ContactForm() {
                 style={{ fontSize: 14, color: '#39B54A', fontWeight: 500, display: 'inline-flex', alignItems: 'center', gap: 8 }}
               >
                 <Check size={16} stroke="currentColor" />
-                Request received. We’ll get back to you shortly.
+                Request received. We’ll reply within one business day.
               </span>
             )}
             {serverError && (

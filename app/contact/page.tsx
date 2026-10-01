@@ -4,7 +4,7 @@ import { COMPANY, OFFICES } from '@/content/company';
 import { LightSection } from '@/components/ui/Layout';
 import ContactForm from '@/components/forms/ContactForm';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { officesSchema } from '@/lib/schema';
+import { officesSchema, breadcrumbSchema } from '@/lib/schema';
 import { pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
@@ -29,6 +29,8 @@ export default function ContactPage() {
 
   return (
     <>
+      <JsonLd data={breadcrumbSchema([['Contact', '/contact']])} />
+
       <JsonLd data={officesSchema()} />
 
       <section

@@ -230,8 +230,8 @@ export function clientAcknowledgement(d: ContactInput): EmailContent {
   ]);
 
   const steps: [string, string, string][] = [
-    ['I', 'We read it today', 'Your request goes straight to our solutions team, not a queue.'],
-    ['II', 'We reply within 24 hours', 'With first questions, or a call slot if the scope needs one.'],
+    ['I', 'It reaches a person, not a queue', 'Your request goes straight to our solutions team.'],
+    ['II', 'We reply within one business day', 'With first questions, or a call slot if the scope needs one.'],
     ['III', 'You get a written proposal', 'Scope, timeline and cost, once we agree on what you need.'],
   ];
 

@@ -7,6 +7,8 @@ import Button from '@/components/ui/Button';
 import { ArrowRight } from '@/components/ui/Icons';
 import { OrbitScene, SealScene } from '@/components/visuals/OrbitScene';
 import { pageMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { breadcrumbSchema } from '@/lib/schema';
 
 export const metadata = pageMetadata({
   title: 'Certifications',
@@ -91,6 +93,8 @@ const sealRow: React.CSSProperties = {
 export default function CertificationsPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema([['About Us', '/about'], ['Certifications', '/about/certifications']])} />
+
       <section
         style={{
           position: 'relative',
@@ -136,7 +140,7 @@ export default function CertificationsPage() {
               marginBottom: 24,
             }}
           >
-            Home / Certifications
+            Home / About Us / Certifications
           </span>
           <h1
             data-hero-rise

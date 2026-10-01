@@ -8,6 +8,8 @@ import Counter from '@/components/ui/Counter';
 import Button from '@/components/ui/Button';
 import { Quote } from '@/components/ui/Icons';
 import { pageMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { breadcrumbSchema } from '@/lib/schema';
 
 export const metadata = pageMetadata({
   title: 'Valuable Clients',
@@ -27,6 +29,8 @@ const caption: React.CSSProperties = {
 export default function ClientsPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema([['Valuable Clients', '/clients']])} />
+
       <section
         style={{
           position: 'relative',

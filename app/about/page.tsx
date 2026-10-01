@@ -7,6 +7,8 @@ import Button from '@/components/ui/Button';
 import { ClientLogoMarquee } from '@/components/ui/Marquee';
 import NetworkCanvas from '@/components/visuals/NetworkCanvas';
 import { pageMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { breadcrumbSchema } from '@/lib/schema';
 
 export const metadata = pageMetadata({
   title: 'About Us',
@@ -54,6 +56,8 @@ function FloatCard({ label, value, style }: { label: string; value: string; styl
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema([['About Us', '/about']])} />
+
       <section
         style={{
           position: 'relative',

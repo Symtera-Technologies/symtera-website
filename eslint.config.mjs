@@ -18,6 +18,10 @@ const eslintConfig = [
       "out/**",
       "build/**",
       "next-env.d.ts",
+      // Passenger entry points. They have to be CommonJS, which the TypeScript
+      // config forbids everywhere else.
+      "server.js",
+      "app.js",
     ],
   },
 ];

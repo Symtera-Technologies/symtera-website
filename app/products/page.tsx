@@ -7,6 +7,8 @@ import { LightSection } from '@/components/ui/Layout';
 import { ArrowUpRight, ContentIcon } from '@/components/ui/Icons';
 import SceneSvg from '@/components/visuals/SceneSvg';
 import { pageMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { breadcrumbSchema } from '@/lib/schema';
 
 export const metadata = pageMetadata({
   title: 'Products',
@@ -17,6 +19,8 @@ export const metadata = pageMetadata({
 export default function ProductsIndexPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema([['Products', '/products']])} />
+
       <section
         style={{
           position: 'relative',

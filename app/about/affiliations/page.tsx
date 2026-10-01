@@ -7,6 +7,8 @@ import Button from '@/components/ui/Button';
 import { ArrowRight } from '@/components/ui/Icons';
 import { OrbitScene } from '@/components/visuals/OrbitScene';
 import { pageMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { breadcrumbSchema } from '@/lib/schema';
 
 export const metadata = pageMetadata({
   title: 'Our Affiliations',
@@ -76,6 +78,8 @@ const splitRow: React.CSSProperties = {
 export default function AffiliationsPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema([['About Us', '/about'], ['Our Affiliations', '/about/affiliations']])} />
+
       <section
         style={{
           position: 'relative',
@@ -121,7 +125,7 @@ export default function AffiliationsPage() {
               marginBottom: 24,
             }}
           >
-            Home / Our Affiliations
+            Home / About Us / Our Affiliations
           </span>
           <h1
             data-hero-rise

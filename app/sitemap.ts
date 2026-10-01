@@ -6,11 +6,19 @@ import { PRODUCT_PAGES } from '@/content/products';
 import { SITE_URL } from '@/lib/site-url';
 
 /**
+ * A stamp that moves only when the content does. This used to be new Date(),
+ * which told search engines that all 36 pages changed on every rebuild - the
+ * fastest way to teach them to ignore lastmod altogether. Bump it whenever the
+ * copy in content/ changes.
+ */
+const LAST_CONTENT_CHANGE = new Date('2026-10-01T00:00:00Z');
+
+/**
  * Tells search engines about the new URL set, which is what lets them move the
  * old WordPress rankings across the redirects in lib/legacy-redirects.ts.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
+  const lastModified = LAST_CONTENT_CHANGE;
 
   const pages: [path: string, priority: number][] = [
     ['/', 1],

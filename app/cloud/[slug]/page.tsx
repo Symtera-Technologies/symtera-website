@@ -35,8 +35,12 @@ export default async function CloudDetailPage({ params }: { params: Promise<{ sl
     <ServicePageTemplate
       page={page}
       path={`/cloud/${slug}`}
-      crumb="Cloud"
-      crumbHref={`/cloud/${CLOUD_PAGES[0].slug}`}
+      // There is no /cloud hub: the five cloud pages are listed on /services,
+      // so that is the real parent. Pointing the crumb at a sibling cloud page
+      // told Google a hierarchy that does not exist.
+      crumb="Services"
+      crumbHref="/services"
+      serviceType="Cloud Hosting"
       related={related}
       relatedLabel="Explore Related Cloud Pages"
     />

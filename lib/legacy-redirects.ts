@@ -12,7 +12,7 @@
  *
  * Deliberately absent, so they return the site's 404 page:
  *   - WordPress theme demo pages (/elements, /typography, /sample-page,
- *     /coming-soon, /ot_footer_builders/*, /gina-bruno, /our-process)
+ *     /coming-soon, /ot_footer_builders/*)
  *   - blog, category, tag and author archives, which have no equivalent
  *   - /scatter, a slot-machine term captured as a redirect in January 2024,
  *     which looks like earlier spam and should not pass on any authority
@@ -77,6 +77,8 @@ export const LEGACY_REDIRECTS: LegacyRedirect[] = [
   { source: '/about-company', destination: '/about' },
   { source: '/professional-team', destination: '/about/leadership' },
   { source: '/board-of-advisory', destination: '/about/leadership' },
+  { source: '/gina-bruno', destination: '/about/leadership' },
+  { source: '/our-process', destination: '/about' },
   { source: '/registrations', destination: '/about/certifications' },
   { source: '/it-services/web-development', destination: '/services/software-development' },
   { source: '/it-services', destination: '/services' },
@@ -102,17 +104,25 @@ export const LEGACY_REDIRECTS: LegacyRedirect[] = [
 
   // ── 2017–2021 dated posts ──────────────────────────────────────────────────
   // Both July 2021 posts are about business IT solutions; every earlier post is SEO.
-  { source: '/2021/07/:day(\\d{2})/:slug', destination: '/services' },
+  { source: '/2021/07/:day(\\d{2})/:slug', destination: '/solutions' },
   { source: '/:year(\\d{4})/:month(\\d{2})/:day(\\d{2})/:slug', destination: '/services/seo' },
 
   // ── Careers. The new site has no careers page yet. ─────────────────────────
   { source: '/:page(career|careers|job-openings|jobs)', destination: '/contact' },
-  { source: '/:group(jobs|job-category|job-type|job-location)/:slug', destination: '/contact' },
+  { source: '/:group(jobs|job-category|job-type|job-location)/:path+', destination: '/contact' },
 
   // ── Old WooCommerce and portfolio ──────────────────────────────────────────
-  { source: '/:page(shop|cart|checkout|my-account)', destination: '/contact' },
+  { source: '/shop', destination: '/products' },
+  { source: '/:page(cart|checkout|my-account)', destination: '/contact' },
   { source: '/:page(portfolio|portfolio-grid|portfolio-grid-2|portfolio-masonry)', destination: '/clients' },
-  { source: '/:group(portfolio|portfolio-cat|portfolio-tag)/:slug', destination: '/clients' },
+  { source: '/:group(portfolio|portfolio-cat|portfolio-tag)/:path+', destination: '/clients' },
+
+  // ── Yoast's sitemaps, which Google still re-requests years after a migration ─
+  {
+    source:
+      '/:map(sitemap_index|post-sitemap|page-sitemap|category-sitemap|post_tag-sitemap|author-sitemap|jobs-sitemap|job-category-sitemap|job-type-sitemap|job-location-sitemap|portfolio-sitemap|portfolio-cat-sitemap|portfolio-tag-sitemap).xml',
+    destination: '/sitemap.xml',
+  },
 ];
 
 /** Staff reach webmail through this path, so it leaves the site entirely. */
