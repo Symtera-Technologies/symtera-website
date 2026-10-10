@@ -7,23 +7,9 @@ import { usePathname } from 'next/navigation';
 import { MONO } from '@/lib/tokens';
 import { ChevronDown, ArrowUpRight } from '@/components/ui/Icons';
 import MobileMenu from './MobileMenu';
+import { ABOUT_LINKS as HOME_LINKS, PARTNER_LINKS, type NavItem } from './nav-links';
 
-type NavItem = { label: string; href: string };
 type DropKey = 'home' | 'ai' | 'products' | 'services' | 'cloud' | 'partners';
-
-const HOME_LINKS: NavItem[] = [
-  { label: 'About Us', href: '/about' },
-  { label: 'Management Team', href: '/about/leadership' },
-  { label: 'Certifications', href: '/about/certifications' },
-  { label: 'Our Affiliations', href: '/about/affiliations' },
-];
-
-const PARTNER_LINKS: NavItem[] = [
-  { label: 'Network Security Partners', href: '/partners#network-security' },
-  { label: 'Compliance Partners', href: '/partners#ssl-compliance' },
-  { label: 'End-Point Security Partners', href: '/partners#endpoint-security' },
-  { label: 'Other Brand Partners', href: '/partners#infrastructure-cloud' },
-];
 
 export default function Header({
   aiLinks,
@@ -233,7 +219,15 @@ export default function Header({
         </div>
       </header>
 
-      {menu && <MobileMenu onClose={() => setMenu(false)} />}
+      {menu && (
+        <MobileMenu
+          onClose={() => setMenu(false)}
+          aiLinks={aiLinks}
+          serviceLinks={serviceLinks}
+          cloudLinks={cloudLinks}
+          productLinks={productLinks}
+        />
+      )}
     </>
   );
 }
