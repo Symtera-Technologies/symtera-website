@@ -79,19 +79,6 @@ export interface Leader {
 
 export const LEADERSHIP: Leader[] = [
   {
-    id: 'leader-cheema',
-    name: 'Hadier S. Cheema',
-    role: 'Co-Founder &amp; Chief Executive Officer',
-    location: 'Oakhurst, NJ',
-    linkedin: null,
-    bio: [
-      '<strong style="font-weight:600">Hadier S. Cheema</strong> serves as the Chief Executive Officer and Co-Founder of Symtera Technologies, where he sets the strategic direction and oversees the company’s operations, client relationships, and growth initiatives. With a strong background in business development and technology leadership, Hadier has been instrumental in building Symtera into a trusted IT solutions provider serving clients across the United States and internationally.',
-      'Before co-founding Symtera, Hadier developed extensive experience in enterprise IT sales, solution architecture, and business operations across the technology sector. His deep understanding of both the technical and business sides of IT services enables him to bridge the gap between complex technology solutions and real-world business outcomes for Symtera’s clients.',
-      'As CEO, Hadier is responsible for cultivating Symtera’s technology partnerships with industry leaders including Fortinet, Sophos, Dell, Cisco, Microsoft, and AWS. He has been particularly focused on expanding the company’s cybersecurity and cloud computing practices, which have become Symtera’s fastest-growing service lines. His vision for the company centers on delivering honest, vendor-neutral technology recommendations that prioritize client success over short-term revenue.',
-      'Hadier holds a strong commitment to quality and compliance, having championed Symtera’s dual ISO certification (ISO 9001:2015 and ISO/IEC 27001:2013), which few IT companies of Symtera’s size achieve. He is based at Symtera’s US headquarters in Oakhurst, New Jersey.',
-    ],
-  },
-  {
     id: 'leader-talib',
     name: 'Ch. Kashif Talib',
     role: 'Co-Founder &amp; President',
