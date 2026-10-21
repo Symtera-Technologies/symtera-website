@@ -12,7 +12,7 @@ import FaqList from '@/components/ui/FaqList';
 import SceneSvg from '@/components/visuals/SceneSvg';
 import SectionBody from './SectionRenderer';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { serviceSchema, faqPageSchema, breadcrumbSchema } from '@/lib/schema';
+import { serviceSchema, softwareApplicationSchema, faqPageSchema, breadcrumbSchema } from '@/lib/schema';
 import PlanMatrix from './PlanMatrix';
 
 export type RelatedLink = { nav: string; href: string; icon: string };
@@ -43,12 +43,22 @@ export default function ServicePageTemplate({ page, crumb, crumbHref, serviceTyp
   return (
     <>
       <JsonLd
-        data={serviceSchema({
-          name: `${page.title} ${page.accent}`,
-          description: page.intro[0],
-          path,
-          serviceType: serviceType ?? crumb,
-        })}
+        data={
+          // Products are licensed software; everything else is an engagement.
+          svc.applicationCategory
+            ? softwareApplicationSchema({
+                name: `${page.title} ${page.accent}`,
+                description: page.intro[0],
+                path,
+                applicationCategory: svc.applicationCategory,
+              })
+            : serviceSchema({
+                name: `${page.title} ${page.accent}`,
+                description: page.intro[0],
+                path,
+                serviceType: serviceType ?? crumb,
+              })
+        }
       />
       {page.faq.length > 0 && <JsonLd data={faqPageSchema(page.faq, path)} />}
       <JsonLd data={breadcrumbSchema([[crumb, crumbHref], [page.nav, path]])} />

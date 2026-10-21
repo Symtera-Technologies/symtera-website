@@ -4,7 +4,7 @@ import type { AiPage } from './types';
 
 export const AI_PAGES: AiPage[] = [
   {
-    slug: 'process-automation', nav: 'Process Automation', visual: 'flow', icon: 'workflow',
+    slug: 'process-automation', seoTitle: 'AI Process Automation', nav: 'Process Automation', visual: 'flow', icon: 'workflow',
     title: 'AI Process Automation for', accent: 'Smarter Business Operations',
     intro: ['Manual processes slow teams down, create inconsistencies and make it difficult to scale.',
       '<b>Symtera Technologies</b> designs <b>AI process automation solutions</b> that combine artificial intelligence, workflow automation, business rules, APIs and system integrations to help organizations reduce repetitive work and improve operational efficiency.',
@@ -38,7 +38,7 @@ export const AI_PAGES: AiPage[] = [
       ['How do we start?', 'Start with one repetitive or time-consuming process. Document how it works today, which systems are involved and where delays occur.']]
   },
   {
-    slug: 'ai-chatbots', nav: 'AI Chatbots', visual: 'chat', icon: 'chat',
+    slug: 'ai-chatbots', seoTitle: 'AI Chatbots & Virtual Assistants', nav: 'AI Chatbots', visual: 'chat', icon: 'chat',
     title: 'AI Chatbots &amp; Virtual Assistants', accent: 'for Business',
     intro: ['Move beyond basic scripted chatbots.', '<b>Symtera Technologies</b> develops <b>AI chatbots and virtual assistants</b> that can understand natural language, retrieve information from approved knowledge sources and integrate with business systems.', 'Our conversational AI solutions can be designed for customer support, employee assistance, knowledge access, lead qualification, service guidance and internal operations.'],
     cta: ['Build an AI Assistant', 'Discuss Your Project'],
@@ -74,7 +74,7 @@ export const AI_PAGES: AiPage[] = [
     faq: [['What can an AI agent do for a business?', 'It can retrieve information, analyze context, use approved tools and perform defined workflow steps.'], ['Are AI agents fully autonomous?', 'They can be, but full autonomy is not appropriate for every task. Business deployments often use permissions and human approval.'], ['What is the difference between an AI agent and a chatbot?', 'A chatbot focuses on conversation. An agent can use tools and perform tasks beyond conversation.'], ['Can AI agents access our internal systems?', 'Yes, where approved integrations and permissions are available.'], ['Can one agent perform multiple tasks?', 'Yes, but the scope should be carefully designed and tested.']]
   },
   {
-    slug: 'document-intelligence', nav: 'Document Intelligence', visual: 'docs', icon: 'doc',
+    slug: 'document-intelligence', seoTitle: 'AI Document Intelligence', nav: 'Document Intelligence', visual: 'docs', icon: 'doc',
     title: 'AI Document Intelligence &amp;', accent: 'Intelligent Document Processing',
     intro: ['Business information is often trapped inside PDFs, forms, reports, invoices, contracts and other documents.', '<b>Symtera Technologies</b> builds <b>AI document intelligence</b> solutions that help organizations extract, organize, validate, summarize and route information from documents into business workflows.'],
     cta: ['Automate Document Workflows', 'Contact Us'],
@@ -107,7 +107,7 @@ export const AI_PAGES: AiPage[] = [
     faq: [['What is RAG?', 'RAG stands for Retrieval-Augmented Generation. It combines search/retrieval with generative AI.'], ['Can a RAG system use private company documents?', 'Yes. Private organizational data is a common use case.'], ['Can answers include sources?', 'Yes. Source references can be designed into the system.'], ['Can access be restricted by department?', 'Yes, depending on the data architecture and permission model.'], ['Is RAG the same as fine-tuning?', 'No. RAG retrieves external information at query time, while fine-tuning modifies model behavior using training data.']]
   },
   {
-    slug: 'integration', nav: 'Integration', visual: 'hub', icon: 'plug',
+    slug: 'integration', seoTitle: 'AI Workflow & System Integration', nav: 'Integration', visual: 'hub', icon: 'plug',
     title: 'AI Workflow &amp; System', accent: 'Integration Services',
     intro: ['AI creates more business value when it works with the systems your teams already use.', '<b>Symtera Technologies</b> provides <b>AI integration services</b> that connect intelligent automation, AI agents, chatbots and document systems with CRM, ERP, databases, internal applications and third-party APIs.'],
     cta: ['Integrate AI with Your Systems', 'Contact Us'],
@@ -120,7 +120,7 @@ export const AI_PAGES: AiPage[] = [
     faq: [['Can AI integrate with our existing ERP?', 'Possibly, depending on the ERP’s APIs or supported integration methods.'], ['Can AI integrate with custom software?', 'Yes, where the application can expose appropriate interfaces or database access.'], ['What if our system has no API?', 'Alternative integration methods may be possible, but suitability should be assessed case by case.'], ['Can integrations be secured?', 'Yes. Authentication, authorization, validation and logging should be part of the architecture.'], ['Can AI trigger actions in another system?', 'Yes, where the integration and permissions allow it.']]
   },
   {
-    slug: 'predictive-ai', nav: 'Predictive AI', visual: 'forecast', icon: 'trend',
+    slug: 'predictive-ai', seoTitle: 'Predictive AI & Data Analytics', nav: 'Predictive AI', visual: 'forecast', icon: 'trend',
     title: 'Predictive AI &amp;', accent: 'Intelligent Data Analytics',
     intro: ['Business data can reveal patterns that are difficult to identify manually.', '<b>Symtera Technologies</b> develops <b>predictive AI and data analytics solutions</b> that help organizations analyze information, detect trends, identify anomalies, forecast outcomes and support data-driven decisions.'],
     cta: ['Discuss Your Data Use Case', 'Contact Us'],
@@ -133,7 +133,7 @@ export const AI_PAGES: AiPage[] = [
     faq: [['What is predictive analytics?', 'Predictive analytics uses data and statistical or machine learning techniques to estimate future outcomes or identify likely patterns.'], ['What data do we need?', 'The answer depends on the use case. Relevant, sufficiently complete historical data is often important.'], ['Can predictive AI guarantee outcomes?', 'No. Predictions are probabilistic and depend on data quality, model design and external factors.'], ['Can predictive models connect to dashboards?', 'Yes. Model outputs can be integrated with reporting and operational applications.'], ['Can anomaly detection be automated?', 'Yes. Systems can flag unusual patterns for investigation.']]
   },
   {
-    slug: 'custom-ai', nav: 'Custom AI', visual: 'custom', icon: 'spark',
+    slug: 'custom-ai', seoTitle: 'Custom AI Development', nav: 'Custom AI', visual: 'custom', icon: 'spark',
     title: 'Custom AI Application Development', accent: 'for Business',
     intro: ['Off-the-shelf AI tools do not fit every business process.', '<b>Symtera Technologies</b> provides <b>custom AI development services</b> for organizations that need purpose-built applications, automation workflows, AI agents, knowledge systems, analytics or integrations designed around their specific requirements.'],
     cta: ['Discuss Your AI Application', 'Contact Us'],

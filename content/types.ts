@@ -38,8 +38,17 @@ export interface Matrix {
   rows: (string[])[];
 }
 
+/**
+ * Shortened <title> for the search result, when `title` + `accent` — which are
+ * the page's H1 — would run past the ~60 characters Google shows. The heading is
+ * marketing copy and stays as written; this is the search-result version of it.
+ * The brand suffix is added by the layout template, so keep this under about 37
+ * characters.
+ */
+export type SeoTitle = { seoTitle?: string };
+
 /** AI service sub-page (/ai/[slug]). */
-export interface AiPage {
+export interface AiPage extends SeoTitle {
   slug: string;
   nav: string;
   visual: string;
@@ -53,7 +62,7 @@ export interface AiPage {
 }
 
 /** Service, cloud and product sub-pages share one shape (/services|cloud|products/[slug]). */
-export interface ServicePage {
+export interface ServicePage extends SeoTitle {
   slug: string;
   nav: string;
   visual: string;
@@ -64,7 +73,12 @@ export interface ServicePage {
   intro: string[];
   cta: [string, string];
   images?: string[];
-  features?: string[];
+  /**
+   * schema.org applicationCategory. Set on the /products pages only, which
+   * describe licensed software and so carry SoftwareApplication rather than the
+   * Service schema the services and cloud pages use.
+   */
+  applicationCategory?: string;
   sections: ContentSection[];
   plans?: Plans;
   matrix?: Matrix;

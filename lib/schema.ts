@@ -125,6 +125,40 @@ export function serviceSchema({
   };
 }
 
+/**
+ * A named, ready-made application, for the /products pages. Those four describe
+ * software you license rather than an engagement you book, which is what
+ * Service describes, so they carry SoftwareApplication instead.
+ *
+ * No `offers` or `aggregateRating`: Google wants both for the full software
+ * rich result, and the product pages publish neither a price nor a review, so
+ * either one would have to be invented.
+ */
+export function softwareApplicationSchema({
+  name,
+  description,
+  path,
+  applicationCategory,
+}: {
+  name: string;
+  description: string;
+  path: string;
+  applicationCategory: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: decode(name),
+    description: decode(description),
+    url: absoluteUrl(path),
+    applicationCategory,
+    // All four are delivered in the browser, which is what the copy claims.
+    operatingSystem: 'Web browser',
+    provider: { '@id': ORG_ID },
+    publisher: { '@id': ORG_ID },
+  };
+}
+
 export function faqPageSchema(items: [question: string, answer: string][], path: string) {
   return {
     '@context': 'https://schema.org',

@@ -9,6 +9,7 @@ Reference material for the migration from the old WordPress site.
 | `JSON-LD Schemas.md` | The same consultant's structured-data proposal: FAQPage, ProfessionalService, Service ×14, BreadcrumbList. |
 | `Developer Implementation Guide.md` | Their six-step plan drawn from the two documents above. |
 | `Post-Migration Indexing Report.md` | Their audit of the live site. |
+| `GEO Action Plan.md` | A second consultant's SEO/GEO plan, 21 October 2026. Sixteen prioritised items, P0 to P3. |
 
 ## Read the four consultant documents with this in mind
 
@@ -44,3 +45,42 @@ claim against the repository and the live site. What it found:
 What the documents do not cover, and what the audit found instead, is in
 `DEPLOYMENT.md` under "One hostname, over HTTPS" — four hostnames serving the
 site with no redirect between them.
+
+## The GEO Action Plan, 21 October 2026
+
+A second consultant, writing three weeks later. Its executive summary repeats
+several claims that were already false when it was written, so check before
+acting on it. Verified against the live site on 21 October 2026:
+
+- **"The homepage is missing its `<title>` tag"** — false. It had one, in
+  `app/page.tsx`. It was 72 characters and so was truncated in results, which is
+  a different problem, and that is what was fixed.
+- **"robots.txt is absent"** — false. `app/robots.ts` has served one since the
+  migration, and it already referenced the sitemap.
+- **"There's no structured data"** — false. Organization and WebSite site-wide,
+  plus Service, FAQPage and BreadcrumbList per route. Its items 6, 10 and 11 ask
+  for schema that was already live.
+- **"The currently-indexed URLs use an OLD path structure"** and the request to
+  finalise 301s — the redirects exist and have since September; see the entry
+  for the first consultant's redirect map above. `/our-partners/network-security/sophos/`
+  returns 308, not 200.
+- **Items 13 and 14, founding year and HQ wording** — no site change needed. The
+  site says 2019 everywhere (`COMPANY.founded`, the clients counter, the history
+  text) and gives Oakhurst, New Jersey consistently in the schema and the FAQ.
+  Where directories say 2020, the directory is wrong; that is an off-site fix.
+
+What it got right, and what was therefore implemented on 21 October 2026:
+
+- **llms.txt was genuinely missing** — now served from `app/llms.txt/route.ts`,
+  generated from the same content files as the sitemap so it cannot go stale.
+- **Over-length titles** — ten, not the nine it counted, once HTML entities are
+  decoded. Fixed with a `seoTitle` override rather than by editing the headings,
+  because on every sub-page the title tag and the H1 are the same string.
+- **Thin service pages** — `/services/seo` and `/services/social-media` carried
+  about 210 words each and no FAQ. Both now have full body sections and an FAQ,
+  which also gives them FAQPage schema through the existing template.
+- **Explicit AI-crawler rules** — the wildcard already allowed them, so this
+  changes no behaviour; it records the decision where a future edit will see it.
+
+Still open, because they need a Google Search Console session or off-site
+access: items 1, 3 (the Pages export), 8, 12 and 15.

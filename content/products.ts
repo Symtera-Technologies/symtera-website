@@ -3,7 +3,7 @@ import type { ServicePage } from './types';
 
 export const PRODUCT_PAGES: ServicePage[] = [
   {
-    slug: 'symscan', nav: 'SymScan', visual: 'biometric', icon: 'fingerprint',
+    slug: 'symscan', applicationCategory: 'BusinessApplication', nav: 'SymScan', visual: 'biometric', icon: 'fingerprint',
     title: 'SymScan', accent: 'Cloud Based HR Software', kicker: 'Upgrade your HR system',
     intro: ['Cloud based HR software consists of determining the identity of a person. The aim is to capture an item of biometric data from this person. It can be a photo of their face, a record of their voice, or an image of their fingerprint.'],
     cta: ['Free Quote', 'Contact Us'],
@@ -17,7 +17,7 @@ export const PRODUCT_PAGES: ServicePage[] = [
     faq: []
   },
   {
-    slug: 'job-management-system', nav: 'Job Management System', visual: 'kanban', icon: 'kanban',
+    slug: 'job-management-system', applicationCategory: 'BusinessApplication', nav: 'Job Management System', visual: 'kanban', icon: 'kanban',
     title: 'Job Management', accent: 'System', kicker: 'JMS',
     intro: ['With the job management system (JMS), enterprises can schedule jobs and projects to teams in the office or in the field. Create a new job or task list, schedule dates, and milestones. Furthermore, set up alerts so everyone knows what to do and when to do it. Manage your projects by assigning specific tasks to particular employees based on your hierarchy.'],
     cta: ['Request a Demo', 'Contact Us'],
@@ -34,7 +34,7 @@ export const PRODUCT_PAGES: ServicePage[] = [
     faq: []
   },
   {
-    slug: 'patient-management-system', nav: 'Patient Management System', visual: 'health', icon: 'heart',
+    slug: 'patient-management-system', applicationCategory: 'HealthApplication', nav: 'Patient Management System', visual: 'health', icon: 'heart',
     title: 'Patient Management', accent: 'System', kicker: 'PMS',
     intro: ['PMS is an efficient cloud-based patient management system with an automated biometric system to manage doctors’ & patients’ databases, diagnoses, prescriptions, clinic records, lab testing dispensary, and inventory. Furthermore, its exceptional key features and reports make it a state-of-the-art patient management solution suitable for every clinic and hospital.'],
     cta: ['Request a Demo', 'Contact Us'],
@@ -46,7 +46,7 @@ export const PRODUCT_PAGES: ServicePage[] = [
     faq: []
   },
   {
-    slug: 'assets-management-system', nav: 'Assets Management System', visual: 'building', icon: 'building',
+    slug: 'assets-management-system', applicationCategory: 'BusinessApplication', nav: 'Assets Management System', visual: 'building', icon: 'building',
     title: 'Assets Management', accent: 'System', kicker: 'AMS',
     intro: ['AMS is a cloud-based property management platform that enables businesses to manage commercial, residential and High-rise properties and take complete control of every aspect of their business to sell, lease and its maintenance.'],
     cta: ['Request a Demo', 'Contact Us'],

@@ -14,7 +14,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const page = PRODUCT_PAGES.find((p) => p.slug === slug);
   if (!page) return {};
   return pageMetadata({
-    title: decode(`${page.title} ${page.accent}`),
+    // The heading doubles as the title tag unless the content gives a shorter one.
+    title: page.seoTitle ?? decode(`${page.title} ${page.accent}`),
     description: decode(page.intro[0]),
     path: `/products/${slug}`,
   });
