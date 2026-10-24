@@ -12,7 +12,11 @@ import { breadcrumbSchema } from '@/lib/schema';
 
 export const metadata = pageMetadata({
   title: 'About Us',
-  description: COMPANY.aboutIntro.slice(0, 180),
+  // Written rather than sliced off aboutIntro, which cut mid-word at 180. The
+  // bare trading name is deliberate: which legal entity owns this site is an
+  // open question, and the two names currently disagree across the page.
+  description:
+    'Symtera Technologies is an IT solutions company and part of a multinational group headquartered in the USA, with a global delivery footprint.',
   path: '/about',
 });
 

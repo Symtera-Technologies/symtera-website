@@ -115,7 +115,8 @@ export default function ProductsIndexPage() {
                 >
                   {PRODUCT_KICKERS[p.slug] || p.kicker}
                 </span>
-                <h3
+                {/* h2, not h3: these cards are the first content under the h1. */}
+                <h2
                   style={{
                     fontWeight: 500,
                     fontSize: 'clamp(28px,3vw,44px)',
@@ -125,7 +126,7 @@ export default function ProductsIndexPage() {
                   }}
                 >
                   {p.nav}
-                </h3>
+                </h2>
                 <p style={{ fontSize: 16, lineHeight: 1.6, color: '#4E5D6C', margin: '0 0 20px', maxWidth: '50ch' }}>
                   {stripTags(p.intro[0])}
                 </p>

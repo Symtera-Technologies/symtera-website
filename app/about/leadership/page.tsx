@@ -13,7 +13,7 @@ import { breadcrumbSchema } from '@/lib/schema';
 export const metadata = pageMetadata({
   title: 'Management Team',
   description:
-      'Our founding team brings together decades of combined experience in IT infrastructure, cybersecurity, cloud computing, software development, and business strategy.',
+    'Our founding team brings decades of combined experience across IT infrastructure, cybersecurity, cloud, software development and business strategy.',
   path: '/about/leadership',
 });
 

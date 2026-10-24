@@ -13,7 +13,9 @@ import { breadcrumbSchema } from '@/lib/schema';
 export const metadata = pageMetadata({
   title: 'Certifications',
   description:
-      'Our dual ISO certifications — ISO 9001:2015 and ISO/IEC 27001:2013 — mean every process, project and client interaction is governed by rigorously audited frameworks.',
+    // The 27001 version named here is under review — see the 24 Oct audit.
+    // Kept verbatim for now so the edit that resolves it is a single change.
+    'Our dual ISO certifications, ISO 9001:2015 and ISO/IEC 27001:2013, govern every process, project and client interaction.',
   path: '/about/certifications',
 });
 

@@ -110,7 +110,8 @@ export default function SolutionsPage() {
                   <ArrowUpRight size={20} strokeWidth={2} style={{ transition: 'transform .3s, color .3s', color: '#8A96A3' }} />
                 </div>
                 <div>
-                  <h3
+                  {/* h2, not h3: these cards are the first content under the h1. */}
+                  <h2
                     style={{
                       fontWeight: 500,
                       fontSize: 'clamp(24px,2.2vw,30px)',
@@ -120,7 +121,7 @@ export default function SolutionsPage() {
                     }}
                   >
                     {s.title}
-                  </h3>
+                  </h2>
                   <p style={{ fontSize: 14.5, lineHeight: 1.55, color: '#4E5D6C', margin: '0 0 14px' }}>{s.copy}</p>
                   <p style={{ fontFamily: MONO, fontSize: 11.5, color: '#0A70B8', margin: 0 }}>{s.uses}</p>
                 </div>

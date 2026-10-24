@@ -11,7 +11,7 @@ import { breadcrumbSchema } from '@/lib/schema';
 export const metadata = pageMetadata({
   title: 'Partners',
   description:
-      'Authorized partnerships with more than 20 leading technology vendors across cybersecurity, networking, cloud computing, infrastructure and enterprise software.',
+    'Authorized partnerships with more than 20 technology vendors across cybersecurity, networking, cloud, infrastructure and enterprise software.',
   path: '/partners',
 });
 

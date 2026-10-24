@@ -99,7 +99,8 @@ function StepHeader({ n, title, hint }: { n: string; title: string; hint: string
         {n}
       </span>
       <div>
-        <h3 style={{ fontWeight: 500, fontSize: 19, letterSpacing: '-.02em', margin: '6px 0 4px' }}>{title}</h3>
+        {/* h2: each step is a top-level <section> of the form, directly under the page h1. */}
+        <h2 style={{ fontWeight: 500, fontSize: 19, letterSpacing: '-.02em', margin: '6px 0 4px' }}>{title}</h2>
         <p style={{ margin: 0, fontSize: 14, color: '#8A96A3' }}>{hint}</p>
       </div>
     </div>

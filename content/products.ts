@@ -22,6 +22,7 @@ export const PRODUCT_PAGES: ServicePage[] = [
   },
   {
     slug: 'job-management-system', applicationCategory: 'BusinessApplication', nav: 'Job Management System', visual: 'kanban', icon: 'kanban',
+    seoDescription: 'JMS schedules jobs and projects to teams in the office or the field — task lists, milestones, alerts, equipment inventory and a jobs pool per team.',
     title: 'Job Management', accent: 'System', kicker: 'JMS',
     intro: ['With the job management system (JMS), enterprises can schedule jobs and projects to teams in the office or in the field. Create a new job or task list, schedule dates, and milestones. Furthermore, set up alerts so everyone knows what to do and when to do it. Manage your projects by assigning specific tasks to particular employees based on your hierarchy.'],
     cta: ['Request a Demo', 'Contact Us'],
@@ -39,6 +40,7 @@ export const PRODUCT_PAGES: ServicePage[] = [
   },
   {
     slug: 'patient-management-system', applicationCategory: 'HealthApplication', nav: 'Patient Management System', visual: 'health', icon: 'heart',
+    seoDescription: 'PMS is cloud-based software for clinics and hospitals: doctor and patient records, diagnoses, prescriptions, lab testing, dispensary and inventory.',
     title: 'Patient Management', accent: 'System', kicker: 'PMS',
     intro: ['PMS is an efficient cloud-based patient management system with an automated biometric system to manage doctors’ & patients’ databases, diagnoses, prescriptions, clinic records, lab testing dispensary, and inventory. Furthermore, its exceptional key features and reports make it a state-of-the-art patient management solution suitable for every clinic and hospital.'],
     cta: ['Request a Demo', 'Contact Us'],
@@ -51,6 +53,7 @@ export const PRODUCT_PAGES: ServicePage[] = [
   },
   {
     slug: 'assets-management-system', applicationCategory: 'BusinessApplication', nav: 'Assets Management System', visual: 'building', icon: 'building',
+    seoDescription: 'AMS is a cloud property management platform for commercial, residential and high-rise portfolios — selling, leasing, payments and maintenance.',
     title: 'Assets Management', accent: 'System', kicker: 'AMS',
     intro: ['AMS is a cloud-based property management platform that enables businesses to manage commercial, residential and High-rise properties and take complete control of every aspect of their business to sell, lease and its maintenance.'],
     cta: ['Request a Demo', 'Contact Us'],

@@ -20,7 +20,9 @@ const CANONICAL_HOST = new URL(SITE_URL).hostname;
  * win over the rule.
  */
 const SUBDOMAIN_MOVES: { path: string; host: string; permanent: boolean }[] = [
-  { path: 'kashif', host: 'kashif.symteratech.com', permanent: false },
+  // Verified answering 200 on 24 Oct 2026, so this one is safe to make permanent.
+  { path: 'kashif', host: 'kashif.symteratech.com', permanent: true },
+  // Still NXDOMAIN. Stays temporary until it resolves.
   { path: 'zafar', host: 'zafar.symteratech.com', permanent: false },
 ];
 

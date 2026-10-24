@@ -5,7 +5,7 @@ const OK = '✓', NO = '–';
 export const SERVICE_PAGES: ServicePage[] = [
   {
     slug: 'software-development', seoTitle: 'Software Development Services', nav: 'Software Development', visual: 'code', icon: 'code',
-    seoDescription: 'Custom web, desktop and mobile software for Windows, Android, iOS and Linux, from requirements and specification through build, test and SLA-backed support.',
+    seoDescription: 'Custom web, desktop and mobile software for Windows, Android, iOS and Linux — from requirements through build, test and SLA-backed support.',
     title: 'Ideal Software Solution', accent: 'for Your Business', kicker: 'Our experience boosts your business',
     intro: ['Symtera Technologies has created multiple web, desktop and mobile applications for clients across the globe.', 'We use open-source, proprietary technologies and framework. Symtera Technologies provides cross platform application for operating systems like Windows, Android, iOS, Linux with excellent performance.'],
     cta: ['Start a Software Project', 'Contact Us'],
@@ -33,6 +33,7 @@ export const SERVICE_PAGES: ServicePage[] = [
   },
   {
     slug: 'e-commerce-development', seoTitle: 'E-Commerce Development Services', nav: 'e-Commerce Development', visual: 'cart', icon: 'cart',
+    seoDescription: 'Symtera designs, builds and optimises online stores — platform selection, migration from legacy carts, payments, mobile performance and conversion work.',
     title: 'E-Commerce Development Services —', accent: 'Launch &amp; Scale Your Online Store',
     intro: ['In today’s digital-first economy, your e-commerce platform isn’t just an online store — it’s your most powerful revenue channel. At <b>Symtera Technologies</b>, we design, develop, and optimize e-commerce solutions that turn browsers into buyers and one-time customers into loyal brand advocates. Our team combines deep technical expertise with a data-driven approach to conversion optimization, ensuring your online store doesn’t just look great — it performs.', 'From startup boutiques launching their first online presence to established retailers migrating to modern platforms, we deliver e-commerce solutions that are fast, secure, mobile-optimized, and built to scale with your business.'],
     cta: ['Request a Free E-Commerce Consultation', 'Call +1 (646) 505-7083'],
@@ -57,6 +58,7 @@ export const SERVICE_PAGES: ServicePage[] = [
   },
   {
     slug: 'seo', nav: 'SEO / SEM', visual: 'seo', icon: 'search',
+    seoDescription: 'Audit-led SEO: technical fixes, on-page optimisation, content, authority building and monthly reporting. Three plans, starting at $499 a month.',
     title: 'Search Engine', accent: 'Optimization', kicker: 'Organic growth, measured monthly',
     intro: ['Search engine optimization that earns durable organic traffic — technical fixes, on-page optimization, content and authority building, local visibility, and monthly reporting.', 'Every engagement opens with a full audit: site health, content duplication, the existing backlink profile, Google penalty checks, competitor positioning and keyword research. What that audit finds sets the priorities for the months after it. The three plans below run the same checklist at different depths, and the row-by-row comparison is further down this page.'],
     cta: ['Choose a Plan', 'Contact Us'],
@@ -104,6 +106,7 @@ export const SERVICE_PAGES: ServicePage[] = [
   },
   {
     slug: 'social-media', nav: 'Social Media', visual: 'social', icon: 'share',
+    seoDescription: 'Social media management across the networks your customers use — page setup, content, paid campaigns and monthly reporting. Plans from $249 a month.',
     title: 'Social Media', accent: 'Plans', kicker: 'Where your customers already are',
     intro: ['Social media management across the networks your customers actually use — page setup and optimization, content and creative, paid campaigns, community monitoring, and monthly reporting.', 'We start from an audit of the accounts you already have, then run a publishing and advertising calendar against goals agreed up front. The three plans below differ in how many networks are covered, how much is published, and whether paid campaigns are included.'],
     cta: ['Choose a Plan', 'Contact Us'],
@@ -143,6 +146,7 @@ export const SERVICE_PAGES: ServicePage[] = [
   },
   {
     slug: 'cloud-services', nav: 'Enterprise Cloud Services', visual: 'cloud', icon: 'cloud',
+    seoDescription: 'Public, private and hybrid cloud deployment from Symtera Technologies — keeping control of your own data while staying cost-effective.',
     title: 'Cloud', accent: 'Services', kicker: 'Control your precious data',
     intro: ['Symtera Technologies has expertise in cloud deployment models like public, private and hybrid. Allowing you to control your precious data while remaining cost-effective.'],
     cta: ['Start Now', 'Contact Us'],
@@ -159,6 +163,7 @@ export const SERVICE_PAGES: ServicePage[] = [
   },
   {
     slug: 'it-infrastructure', seoTitle: 'IT Infrastructure Services', nav: 'IT Infrastructure', visual: 'infra', icon: 'server',
+    seoDescription: 'We audit your existing or planned IT infrastructure, then design and operate a cost-effective, secure setup around what the audit finds.',
     title: 'IT Infrastructure,', accent: 'designed and operated', kicker: 'Effectively manage the IT life-cycle',
     intro: ['Reliable and Secure IT Infrastructure is a backbone of IT system of any modern organization. We will help your organization to design a cost-effective IT infrastructure after detailed auditing of exiting or newly build IT infrastructure.'],
     cta: ['Plan Your Infrastructure', 'Contact Us'],

@@ -86,7 +86,8 @@ export default function ServicesIndexPage() {
               const inner = (
                 <>
                   <p style={{ fontFamily: MONO, fontSize: 13, margin: 0, color: '#0A70B8' }}>{s.n}</p>
-                  <h3
+                  {/* h2, not h3: these cards are the first content under the h1. */}
+                  <h2
                     style={{
                       fontWeight: 500,
                       fontSize: 'clamp(22px,2vw,28px)',
@@ -96,7 +97,7 @@ export default function ServicesIndexPage() {
                     }}
                   >
                     {s.title}
-                  </h3>
+                  </h2>
                   <p style={{ fontSize: 16, lineHeight: 1.6, color: '#4E5D6C', margin: 0, maxWidth: '56ch' }}>{s.copy}</p>
                   {s.slug && (
                     <ArrowRight size={20} strokeWidth={2} style={{ transition: 'transform .3s, color .3s', color: '#8A96A3' }} />

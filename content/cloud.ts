@@ -4,6 +4,7 @@ import type { ServicePage } from './types';
 export const CLOUD_PAGES: ServicePage[] = [
   {
     slug: 'enterprise-email-solutions', nav: 'Enterprise Email Solutions', visual: 'mail', icon: 'mail',
+    seoDescription: 'Corporate email on dedicated servers, matched to your own domain, with virus, spam and phishing protection and 24/7 support. From $1.99 a mailbox.',
     title: 'Enterprise Email', accent: 'Solutions', kicker: 'Build trustworthy relationships with a professional email address',
     intro: ['Host your corporate email in dedicated servers with our secure cloud-based enterprise email solutions to match your business domain. Email address with your business name helps to present professionalism and strengthen your relationships with customers and business partners. Enterprise-level security ensures the protection of your inboxes from external viruses, spamming, and phishing attacks. Our team of hosting experts is readily available for 24/7 support and promises accurate deliverability of business emails. Our enterprise email hosting plans start from $1.99 per mailbox per month, choose a plan and start building trustworthy relationships.'],
     cta: ['Get Started', 'Contact Us'],
@@ -26,6 +27,7 @@ export const CLOUD_PAGES: ServicePage[] = [
   },
   {
     slug: 'cloud-enterprise-server', seoTitle: 'Cloud Enterprise Server Hosting', nav: 'Cloud Enterprise Server', visual: 'server', icon: 'server',
+    seoDescription: 'Scalable, flexible cloud hosting on public cloud or on Symtera’s own Oracle-Linux private cloud, with top-level domain registration alongside it.',
     title: 'Every business needs a', accent: 'versatile hosting service', kicker: 'Cloud Enterprise Server',
     intro: ['Cloud hosting is very scalable, reliable and flexible in nature. We can provide cloud hosting services on public cloud and Symtera Technologies Private Cloud <b>(Oracle-Linux base)</b>.'],
     cta: ['Choose a Plan', 'Contact Us'],
