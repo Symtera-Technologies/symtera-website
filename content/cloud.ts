@@ -44,6 +44,7 @@ export const CLOUD_PAGES: ServicePage[] = [
   },
   {
     slug: 'linux-hosting', nav: 'cPanel Hosting', visual: 'host', icon: 'globe',
+    seoDescription: 'cPanel-powered Linux hosting with free SSL, zero interruption and 24/7 support. Compare the plans, storage and bandwidth before you choose.',
     title: 'Linux', accent: 'Hosting', kicker: 'Choose your plan',
     intro: ['cPanel-powered Linux hosting with free SSL, zero interruption and 24/7 support.'],
     cta: ['Choose a Plan', 'Contact Us'],
@@ -62,6 +63,7 @@ export const CLOUD_PAGES: ServicePage[] = [
   },
   {
     slug: 'windows-hosting', nav: 'Windows Hosting', visual: 'host', icon: 'grid',
+    seoDescription: 'Plesk-powered Windows hosting with free SSL, zero interruption and 24/7 support. Compare the plans, storage and bandwidth before you choose.',
     title: 'Windows', accent: 'Hosting', kicker: 'Choose your plan',
     intro: ['Plesk-powered Windows hosting with free SSL, zero interruption and 24/7 support.'],
     cta: ['Choose a Plan', 'Contact Us'],

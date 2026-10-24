@@ -3,7 +3,6 @@
 import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useSearchParams } from 'next/navigation';
 
 import { MONO } from '@/lib/tokens';
 import { contactSchema, type ContactInput } from '@/lib/contact-schema';
@@ -109,10 +108,13 @@ function StepHeader({ n, title, hint }: { n: string; title: string; hint: string
 
 const SERVICE_LABELS = SERVICE_OPTIONS.map(([l]) => l);
 
-export default function ContactForm() {
-  const params = useSearchParams();
-  const requested = params.get('service') ?? '';
-
+/**
+ * `requested` is the `?service=` value, read on the server by app/contact/page.tsx
+ * and passed down. It used to come from `useSearchParams()`, which forced this
+ * whole form to render in the browser only — the server sent an empty box, so
+ * the site's one conversion path was invisible to crawlers and to AI agents.
+ */
+export default function ContactForm({ requested = '' }: { requested?: string }) {
   // A product name (e.g. "SymScan") has no matching service option, so it seeds
   // the message instead and the service stays on the default.
   const preselected = SERVICE_LABELS.find((l) => l.toLowerCase() === requested.toLowerCase());

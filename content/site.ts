@@ -73,6 +73,63 @@ export const PRODUCT_KICKERS: Record<string, string> = {
   'assets-management-system': 'Property & Assets',
 };
 
+/**
+ * The client each logo file belongs to, read off the artwork itself — the
+ * filenames are PowerPoint export names (`ppt-2-34`) and carry nothing.
+ *
+ * Forty-three of the forty-six logos used to share one alt attribute,
+ * `Client logo`, which made the site's strongest proof unreadable to search
+ * engines and answer engines alike. Five marks are wordless or set only in
+ * Urdu script and are left to the fallback rather than guessed at.
+ */
+const CLIENT_NAMES: Record<string, string> = {
+  'ppt-2-40': 'Punjab Public Service Commission',
+  'ppt-2-54': 'Zaitoon',
+  outfitter: 'Outfitters',
+  'ppt-2-43': 'DHA Islamabad-Rawalpindi',
+  'ppt-2-34': 'Don Valley Pharmaceuticals',
+  'ppt-2-60': 'Diamond Paints',
+  ramada: 'Ramada by Wyndham',
+  'ppt-2-44': 'Quality Management Services, QMS 9000',
+  'ppt-2-46': 'Pearl-Continental Hotel Apartments',
+  'ppt-2-45': 'Purely Disinfect',
+  'ppt-2-42': 'Shezan',
+  'ppt-2-53': 'Maskan',
+  'ppt-2-61': 'Calix International',
+  'ppt-2-63': 'CakeStores',
+  'ppt-2-62': 'BreeO',
+  'ppt-2-55': 'SK Enterprises',
+  'ppt-2-56': 'Olympia',
+  'ppt-2-57': 'The Corporate International',
+  'ppt-2-58': 'Ijaz Apparel',
+  'ppt-2-52': 'Monnoo Group of Industries',
+  'ppt-2-51': 'Orbit Housing',
+  'ppt-2-50': 'The Thinking School',
+  'ppt-2-49': 'iGearsPK',
+  'ppt-2-39': 'New Lahore City',
+  'ppt-2-38': 'Vitamin92',
+  'ppt-2-36': 'Dress Me',
+  'ppt-2-37': 'Pakistan ASCD',
+  loftex: 'Loftex',
+  'untitled-design-10-1': 'Stoneshield International',
+  'untitled-design-9-1-1': 'Virtual University',
+  'untitled-design-8-1-1': 'Maryum & Maria',
+  'untitled-design-7-1': 'Tara Group Pakistan',
+  'untitled-design-6-1': 'Emporium by Nishat Group',
+  'untitled-design-5-1': 'Techlogix',
+  'untitled-design-15': 'Suraj Cotton Mills',
+  'untitled-design-14': 'Takmil',
+  'untitled-design-13-1': 'Pakistan Institute of Fashion and Design',
+  'untitled-design-12-1': 'xiQ',
+  'untitled-design-11-1-1': 'TUV Austria Bureau of Inspection & Certification',
+  'untitled-design-17': 'Challenge',
+  'untitled-design-16': 'Punjab Examination Commission',
+};
+
+/** Alt text for one logo file, falling back where the mark carries no name. */
+const logoAlt = (f: string) =>
+  CLIENT_NAMES[f] ? `${CLIENT_NAMES[f]} logo` : 'Client logo';
+
 /** 46 client logos, downloaded from the live site into /public/clients. */
 export const CLIENT_LOGOS: { src: string; alt: string }[] = [
   'ppt-2-40', 'ppt-2-59', 'ppt-2-54', 'outfitter', 'ppt-2-43', 'ppt-2-34', 'ppt-2-60', 'ramada',
@@ -85,7 +142,7 @@ export const CLIENT_LOGOS: { src: string; alt: string }[] = [
   'untitled-design-17', 'untitled-design-16',
 ].map((f) => ({
   src: `/clients/${f}.webp`,
-  alt: ({ outfitter: 'Outfitters', ramada: 'Ramada', loftex: 'Loftex' } as Record<string, string>)[f] || 'Client logo',
+  alt: logoAlt(f),
 }));
 
 /** The marquee strip on home and about uses this 12-logo subset. */
@@ -94,7 +151,7 @@ export const MARQUEE_LOGOS: { src: string; alt: string }[] = [
   'ppt-2-58', 'ppt-2-41', 'ramada', 'ppt-2-49', 'ppt-2-55', 'ppt-2-51',
 ].map((f) => ({
   src: `/clients/${f}.webp`,
-  alt: ({ outfitter: 'Outfitters', ramada: 'Ramada' } as Record<string, string>)[f] || 'Client logo',
+  alt: logoAlt(f),
 }));
 
 /** Contact form: services, and the feature checkboxes each one reveals. */

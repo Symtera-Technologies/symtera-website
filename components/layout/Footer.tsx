@@ -159,8 +159,14 @@ export default function Footer() {
           <p style={colTitle}>Contact</p>
           <div style={{ display: 'grid', gap: 8 }}>
             <a data-navlink href={`mailto:${COMPANY.email}`} style={colLink}>{COMPANY.email}</a>
+            {/* The postal address was missing from every page footer, which is
+                the one place a crawler and a reader both expect to find it. */}
             {OFFICES.map((o) => (
-              <a key={o.tel} data-navlink href={`tel:${o.tel}`} style={colLink}>{o.phone}</a>
+              <div key={o.tel} style={{ display: 'grid', gap: 2 }}>
+                <span style={{ fontSize: 13, color: '#8A96A3' }}>{o.region}</span>
+                <span style={{ ...colLink, display: 'block' }}>{o.lines.join(', ')}</span>
+                <a data-navlink href={`tel:${o.tel}`} style={colLink}>{o.phone}</a>
+              </div>
             ))}
             <div style={{ display: 'flex', gap: 10, marginTop: 10, flexWrap: 'wrap' }}>
               {SOCIALS.map((s) => (

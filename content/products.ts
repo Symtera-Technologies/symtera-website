@@ -4,8 +4,12 @@ import type { ServicePage } from './types';
 export const PRODUCT_PAGES: ServicePage[] = [
   {
     slug: 'symscan', applicationCategory: 'BusinessApplication', nav: 'SymScan', visual: 'biometric', icon: 'fingerprint',
+    seoDescription: 'SymScan is cloud-based HR software that registers each employee by thumb impression, face or voice, then runs attendance, scheduling and payroll from it.',
     title: 'SymScan', accent: 'Cloud Based HR Software', kicker: 'Upgrade your HR system',
-    intro: ['Cloud based HR software consists of determining the identity of a person. The aim is to capture an item of biometric data from this person. It can be a photo of their face, a record of their voice, or an image of their fingerprint.'],
+    intro: [
+      'SymScan is cloud-based HR software built around biometric identification. It registers each employee by thumb impression, face or voice, then ties attendance, scheduling and payroll to that verified identity rather than to a card anyone could swipe.',
+      'Access control, attendance timesheets, impression registration and a full HR reporting portal run from one place. A peripheral testing panel checks the thumb scanners, cameras and RFID readers on site, and reports can be generated per department or for an individual employee.',
+    ],
     cta: ['Free Quote', 'Contact Us'],
     sections: [
       { kind: 'cards', title: 'Core Modules', items: [

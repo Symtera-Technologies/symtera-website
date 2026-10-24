@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return pageMetadata({
     // The heading doubles as the title tag unless the content gives a shorter one.
     title: page.seoTitle ?? decode(`${page.title} ${page.accent}`),
-    description: decode(page.intro[0]),
+    description: page.seoDescription ?? decode(page.intro[0]),
     path: `/ai/${slug}`,
   });
 }

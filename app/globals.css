@@ -102,4 +102,9 @@ input::placeholder, textarea::placeholder { color: #8A96A3; }
   [data-hero-visual] { max-width: 420px !important; justify-self: start !important; margin-top: 8px }
 }
 @media (max-width: 760px) { [data-stack] { grid-template-columns: 1fr !important } }
+/* An `auto-fit` card grid resolves to a single track on a phone, and a child
+   spanning two columns then forces a narrow implicit second track that the
+   remaining cards fall into — one word per line, clipped at the viewport edge.
+   Dropping the span is what keeps the grid at one column. */
+@media (max-width: 760px) { [data-card-wide] { grid-column: span 1 !important } }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important } }

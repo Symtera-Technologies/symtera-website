@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return pageMetadata({
     // The heading doubles as the title tag unless the content gives a shorter one.
     title: page.seoTitle ?? decode(`${page.title} ${page.accent}`),
-    description: decode(page.intro[0]),
+    description: page.seoDescription ?? decode(page.intro[0]),
     path: `/cloud/${slug}`,
   });
 }
@@ -36,11 +36,8 @@ export default async function CloudDetailPage({ params }: { params: Promise<{ sl
     <ServicePageTemplate
       page={page}
       path={`/cloud/${slug}`}
-      // There is no /cloud hub: the five cloud pages are listed on /services,
-      // so that is the real parent. Pointing the crumb at a sibling cloud page
-      // told Google a hierarchy that does not exist.
-      crumb="Services"
-      crumbHref="/services"
+      crumb="Cloud"
+      crumbHref="/cloud"
       serviceType="Cloud Hosting"
       related={related}
       relatedLabel="Explore Related Cloud Pages"

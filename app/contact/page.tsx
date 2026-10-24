@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import { MONO } from '@/lib/tokens';
 import { COMPANY, OFFICES } from '@/content/company';
 import { LightSection } from '@/components/ui/Layout';
@@ -24,8 +23,20 @@ const kicker = (color: string): React.CSSProperties => ({
   marginBottom: 12,
 });
 
-export default function ContactPage() {
-  const [pk, us] = OFFICES;
+/**
+ * `?service=` is read here rather than in the form, so that the form renders on
+ * the server with the right option already selected. Reading it inside the
+ * client component meant Next bailed out to client-side rendering and sent an
+ * empty 600px box to anything that does not run JavaScript.
+ */
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ service?: string | string[] }>;
+}) {
+  const { service } = await searchParams;
+  const requested = Array.isArray(service) ? (service[0] ?? '') : (service ?? '');
+  const [us, pk] = OFFICES;
 
   return (
     <>
@@ -99,28 +110,11 @@ export default function ContactPage() {
             alignItems: 'start',
           }}
         >
-          <Suspense fallback={<div style={{ minHeight: 600 }} />}>
-            <ContactForm />
-          </Suspense>
+          <ContactForm requested={requested} />
 
           <aside data-reveal style={{ display: 'grid', gap: 12 }}>
             <div style={{ background: '#0B1420', color: '#F4F7FA', borderRadius: 18, padding: 26 }}>
-              <span style={kicker('#8CC63F')}>{pk.region}</span>
-              <p style={{ fontWeight: 500, fontSize: 18, lineHeight: 1.4, margin: 0, letterSpacing: '-.01em' }}>
-                {pk.lines[0]}
-                <br />
-                {pk.lines[1]}
-              </p>
-              <a
-                href={`tel:${pk.tel}`}
-                style={{ fontSize: 15, textDecoration: 'none', display: 'block', marginTop: 10, color: '#4FB8E8' }}
-              >
-                {pk.phone}
-              </a>
-            </div>
-
-            <div style={{ background: '#fff', border: '1px solid #DCE3EA', borderRadius: 18, padding: 26 }}>
-              <span style={kicker('#0A70B8')}>{us.region}</span>
+              <span style={kicker('#8CC63F')}>{us.region}</span>
               <p style={{ fontWeight: 500, fontSize: 18, lineHeight: 1.4, margin: 0, letterSpacing: '-.01em' }}>
                 {us.lines[0]}
                 <br />
@@ -128,9 +122,24 @@ export default function ContactPage() {
               </p>
               <a
                 href={`tel:${us.tel}`}
-                style={{ fontSize: 15, textDecoration: 'none', display: 'block', marginTop: 10, color: '#0A70B8' }}
+                style={{ fontSize: 15, textDecoration: 'none', display: 'block', marginTop: 10, color: '#4FB8E8' }}
               >
                 {us.phone}
+              </a>
+            </div>
+
+            <div style={{ background: '#fff', border: '1px solid #DCE3EA', borderRadius: 18, padding: 26 }}>
+              <span style={kicker('#0A70B8')}>{pk.region}</span>
+              <p style={{ fontWeight: 500, fontSize: 18, lineHeight: 1.4, margin: 0, letterSpacing: '-.01em' }}>
+                {pk.lines[0]}
+                <br />
+                {pk.lines[1]}
+              </p>
+              <a
+                href={`tel:${pk.tel}`}
+                style={{ fontSize: 15, textDecoration: 'none', display: 'block', marginTop: 10, color: '#0A70B8' }}
+              >
+                {pk.phone}
               </a>
             </div>
 

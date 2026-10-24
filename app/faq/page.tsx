@@ -18,7 +18,7 @@ export const metadata = pageMetadata({
 });
 
 export default function FaqPage() {
-  const [pk] = OFFICES;
+  const [us] = OFFICES;
 
   return (
     <>
@@ -188,7 +188,7 @@ export default function FaqPage() {
                   <Link href={`mailto:${COMPANY.email}`} style={{ color: '#8CC63F' }}>
                     {COMPANY.email}
                   </Link>{' '}
-                  or call {pk.phone}.
+                  or call {us.phone}.
                 </p>
               </>
             }

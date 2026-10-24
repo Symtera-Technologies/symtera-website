@@ -13,7 +13,8 @@ import { breadcrumbSchema } from '@/lib/schema';
 
 export const metadata = pageMetadata({
   title: 'Valuable Clients',
-  description: 'We’re trusted worldwide: serving clients across multiple countries.',
+  description:
+    'The 46 organisations Symtera Technologies works with across multiple countries — hotel groups, retailers and textile manufacturers among them.',
   path: '/clients',
 });
 

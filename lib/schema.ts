@@ -90,7 +90,9 @@ export function officesSchema() {
     email: COMPANY.email,
     telephone,
     address,
-    priceRange: '$$',
+    // No priceRange. The site publishes real prices on the cloud pages and
+    // nothing resembling a "$$" tier anywhere, so stating one was an invention
+    // of exactly the kind we declined to make with aggregateRating.
   });
   return {
     '@context': 'https://schema.org',
@@ -154,7 +156,10 @@ export function softwareApplicationSchema({
     applicationCategory,
     // All four are delivered in the browser, which is what the copy claims.
     operatingSystem: 'Web browser',
-    provider: { '@id': ORG_ID },
+    // `provider` is not valid on SoftwareApplication — it belongs on Service,
+    // where serviceSchema above uses it correctly. For software the authoring
+    // organisation is `creator`.
+    creator: { '@id': ORG_ID },
     publisher: { '@id': ORG_ID },
   };
 }

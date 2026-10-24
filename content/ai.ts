@@ -5,6 +5,7 @@ import type { AiPage } from './types';
 export const AI_PAGES: AiPage[] = [
   {
     slug: 'process-automation', seoTitle: 'AI Process Automation', nav: 'Process Automation', visual: 'flow', icon: 'workflow',
+    seoDescription: 'AI process automation that runs real workflows end to end, with human-in-the-loop approval and integration into the systems your teams already use.',
     title: 'AI Process Automation for', accent: 'Smarter Business Operations',
     intro: ['Manual processes slow teams down, create inconsistencies and make it difficult to scale.',
       '<b>Symtera Technologies</b> designs <b>AI process automation solutions</b> that combine artificial intelligence, workflow automation, business rules, APIs and system integrations to help organizations reduce repetitive work and improve operational efficiency.',
@@ -39,6 +40,7 @@ export const AI_PAGES: AiPage[] = [
   },
   {
     slug: 'ai-chatbots', seoTitle: 'AI Chatbots & Virtual Assistants', nav: 'AI Chatbots', visual: 'chat', icon: 'chat',
+    seoDescription: 'AI chatbots and virtual assistants that go beyond scripted replies: integrated with your systems, with clear limits on what they answer.',
     title: 'AI Chatbots &amp; Virtual Assistants', accent: 'for Business',
     intro: ['Move beyond basic scripted chatbots.', '<b>Symtera Technologies</b> develops <b>AI chatbots and virtual assistants</b> that can understand natural language, retrieve information from approved knowledge sources and integrate with business systems.', 'Our conversational AI solutions can be designed for customer support, employee assistance, knowledge access, lead qualification, service guidance and internal operations.'],
     cta: ['Build an AI Assistant', 'Discuss Your Project'],
@@ -55,6 +57,7 @@ export const AI_PAGES: AiPage[] = [
   },
   {
     slug: 'ai-agents', nav: 'AI Agents', visual: 'agent', icon: 'bot',
+    seoDescription: 'AI agents that carry out multi-step work inside your business systems, with human control over the decisions that matter and a record of every action.',
     title: 'AI Agents for', accent: 'Business Operations',
     intro: ['AI agents can do more than answer questions.', '<b>Symtera Technologies</b> develops <b>AI agents for business</b> that can understand instructions, retrieve information, use approved tools, interact with connected systems and complete defined workflow steps.', 'AI agents can support research, operations, customer service, sales, document handling, reporting and other knowledge-intensive business tasks.'],
     cta: ['Explore AI Agent Use Cases', 'Discuss Your Project'],
@@ -75,6 +78,7 @@ export const AI_PAGES: AiPage[] = [
   },
   {
     slug: 'document-intelligence', seoTitle: 'AI Document Intelligence', nav: 'Document Intelligence', visual: 'docs', icon: 'doc',
+    seoDescription: 'Intelligent document processing that extracts, validates and routes data from PDFs, forms, invoices and contracts, with human review where it counts.',
     title: 'AI Document Intelligence &amp;', accent: 'Intelligent Document Processing',
     intro: ['Business information is often trapped inside PDFs, forms, reports, invoices, contracts and other documents.', '<b>Symtera Technologies</b> builds <b>AI document intelligence</b> solutions that help organizations extract, organize, validate, summarize and route information from documents into business workflows.'],
     cta: ['Automate Document Workflows', 'Contact Us'],
@@ -95,6 +99,7 @@ export const AI_PAGES: AiPage[] = [
   },
   {
     slug: 'knowledge-rag', nav: 'Knowledge & RAG', visual: 'rag', icon: 'book',
+    seoDescription: 'RAG systems and enterprise knowledge assistants that answer from your own private documents, with citations back to the source material.',
     title: 'AI Knowledge Systems &amp;', accent: 'RAG Solutions',
     intro: ['Your organization already has valuable knowledge. The challenge is finding it when people need it.', '<b>Symtera Technologies</b> builds <b>AI knowledge systems and Retrieval-Augmented Generation (RAG) solutions</b> that allow authorized users to ask questions across company documents, reports, policies and approved information sources using natural language.'],
     cta: ['Build a Knowledge System', 'Contact Us'],
@@ -108,6 +113,7 @@ export const AI_PAGES: AiPage[] = [
   },
   {
     slug: 'integration', seoTitle: 'AI Workflow & System Integration', nav: 'Integration', visual: 'hub', icon: 'plug',
+    seoDescription: 'AI workflow and system integration: API-led connections that add AI to the applications you already run, without replacing the core systems.',
     title: 'AI Workflow &amp; System', accent: 'Integration Services',
     intro: ['AI creates more business value when it works with the systems your teams already use.', '<b>Symtera Technologies</b> provides <b>AI integration services</b> that connect intelligent automation, AI agents, chatbots and document systems with CRM, ERP, databases, internal applications and third-party APIs.'],
     cta: ['Integrate AI with Your Systems', 'Contact Us'],
@@ -121,6 +127,7 @@ export const AI_PAGES: AiPage[] = [
   },
   {
     slug: 'predictive-ai', seoTitle: 'Predictive AI & Data Analytics', nav: 'Predictive AI', visual: 'forecast', icon: 'trend',
+    seoDescription: 'Predictive AI and data analytics built around a business objective, turning forecasts into action inside the workflow rather than into another dashboard.',
     title: 'Predictive AI &amp;', accent: 'Intelligent Data Analytics',
     intro: ['Business data can reveal patterns that are difficult to identify manually.', '<b>Symtera Technologies</b> develops <b>predictive AI and data analytics solutions</b> that help organizations analyze information, detect trends, identify anomalies, forecast outcomes and support data-driven decisions.'],
     cta: ['Discuss Your Data Use Case', 'Contact Us'],
@@ -134,6 +141,7 @@ export const AI_PAGES: AiPage[] = [
   },
   {
     slug: 'custom-ai', seoTitle: 'Custom AI Development', nav: 'Custom AI', visual: 'custom', icon: 'spark',
+    seoDescription: 'Custom AI application development, from first idea through to production, deployed in the cloud or on-premises and built around your existing systems.',
     title: 'Custom AI Application Development', accent: 'for Business',
     intro: ['Off-the-shelf AI tools do not fit every business process.', '<b>Symtera Technologies</b> provides <b>custom AI development services</b> for organizations that need purpose-built applications, automation workflows, AI agents, knowledge systems, analytics or integrations designed around their specific requirements.'],
     cta: ['Discuss Your AI Application', 'Contact Us'],

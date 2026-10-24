@@ -3,18 +3,22 @@ import { MONO } from '@/lib/tokens';
 import { Eyebrow, SectionHeading } from '@/components/ui/Type';
 import { ArrowUpRight } from '@/components/ui/Icons';
 
+// Each card points at the page that actually answers it rather than at the hub
+// it sits under. The hubs are already one click away in the nav, and routing
+// every card to /services left all 18 sub-pages with no inbound link from the
+// home page at all.
 const CARDS: { kicker: string; title: React.ReactNode; copy: string; href: string }[] = [
   {
     kicker: 'Software',
     title: <>Custom software, web, mobile &amp; e-commerce</>,
     copy: 'Web apps, mobile apps, WordPress, Shopify and WooCommerce stores, API development.',
-    href: '/services',
+    href: '/services/software-development',
   },
   {
     kicker: 'Cloud',
     title: <>Enterprise cloud, email &amp; hosting</>,
     copy: 'Enterprise email, cloud enterprise servers, cPanel and Windows hosting, Shared Hosting Plus.',
-    href: '/services',
+    href: '/cloud/enterprise-email-solutions',
   },
   {
     kicker: 'Cybersecurity',
@@ -26,20 +30,31 @@ const CARDS: { kicker: string; title: React.ReactNode; copy: string; href: strin
     kicker: 'Infrastructure & BI',
     title: <>IT infrastructure, IoT &amp; business intelligence</>,
     copy: 'End-to-end infrastructure, data centres, IoT automation, MS-SQL, SharePoint and Power BI.',
-    href: '/services',
+    href: '/services/it-infrastructure',
   },
   {
     kicker: 'Growth',
     title: <>SEO, SEM, social &amp; SMS</>,
     copy: 'Search, paid media, social, and bulk, transactional and OTP SMS with API access.',
-    href: '/services',
+    href: '/services/seo',
   },
   {
     kicker: 'Integration',
     title: <>System integrations &amp; APIs</>,
     copy: 'Application integration and API development so every system in the business talks to the others.',
-    href: '/services',
+    href: '/ai/integration',
   },
+];
+
+/**
+ * The four licensed products had no inbound link from the home page either, and
+ * they are the only pages on the site that carry SoftwareApplication schema.
+ */
+const PRODUCT_LINKS: [label: string, href: string][] = [
+  ['SymScan', '/products/symscan'],
+  ['Job Management System', '/products/job-management-system'],
+  ['Patient Management System', '/products/patient-management-system'],
+  ['Assets Management System', '/products/assets-management-system'],
 ];
 
 const kickerStyle: React.CSSProperties = {
@@ -85,6 +100,7 @@ export default function WhatWeDo() {
         <Link
           data-card-light
           data-reveal
+          data-card-wide
           href="/ai"
           style={{
             gridColumn: 'span 2',
@@ -179,6 +195,35 @@ export default function WhatWeDo() {
               </h3>
               <p style={{ fontSize: 14, lineHeight: 1.55, color: '#4E5D6C', margin: 0 }}>{c.copy}</p>
             </div>
+          </Link>
+        ))}
+      </div>
+
+      <div
+        data-reveal
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'baseline',
+          gap: '10px 18px',
+          marginTop: 28,
+        }}
+      >
+        <span style={kickerStyle}>Our products</span>
+        {PRODUCT_LINKS.map(([label, href]) => (
+          <Link
+            key={href}
+            data-navlink
+            href={href}
+            style={{
+              fontSize: 15,
+              color: '#0A70B8',
+              textDecoration: 'none',
+              borderBottom: '1px solid rgba(10,112,184,.3)',
+              paddingBottom: 1,
+            }}
+          >
+            {label}
           </Link>
         ))}
       </div>

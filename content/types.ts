@@ -45,7 +45,18 @@ export interface Matrix {
  * The brand suffix is added by the layout template, so keep this under about 37
  * characters.
  */
-export type SeoTitle = { seoTitle?: string };
+export type SeoTitle = {
+  seoTitle?: string;
+  /**
+   * Meta description for the search result, when the page's first intro
+   * paragraph does not make one. That paragraph is body copy: on some pages it
+   * is a 36-character fragment Google has nothing to show from, and on others a
+   * 653-character block that is cut off at about 160 anyway. Aim for 110-165
+   * characters, and write it as a description of the page rather than a repeat
+   * of the opening line.
+   */
+  seoDescription?: string;
+};
 
 /** AI service sub-page (/ai/[slug]). */
 export interface AiPage extends SeoTitle {

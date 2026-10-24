@@ -22,18 +22,24 @@ export const COMPANY = {
     'Symtera Technologies Private Limited is an IT solution company and part of a multi-national group of companies with headquarters in the USA and a global footprint. We specialize in business IT solutions including ICT, AI, BI, data centers, web apps, mobile apps, eCommerce suite, SMS notifications services, digital identifications services, SEO SEM, hosting services cloud service, IT infrastructure, and customized solutions. Given our history and leadership, we are now established and expanding in Pakistan. Our team of international advisers, consultants, engineers and developers in Pakistan brings decades of experience. We aim to provide unsurpassed customer support while developing standard and customized solutions to meet your needs.',
 };
 
+/**
+ * United States first. This array drives the footer, /contact, /faq, llms.txt
+ * and both transactional emails, and listing Lahore first meant every one of
+ * those led with a Pakistani address and number for a company selling into the
+ * US. Order here is presentation order everywhere.
+ */
 export const OFFICES = [
-  {
-    region: 'Pakistan',
-    lines: ['263 H1 Johar Town', 'Lahore, PK'],
-    phone: '+92 3 111 119 120',
-    tel: '+923111119120',
-  },
   {
     region: 'United States',
     lines: ['1806 State Route 35, Suite 304', 'Oakhurst, NJ 07755, USA'],
     phone: '+1 (646) 505-7083',
     tel: '+16465057083',
+  },
+  {
+    region: 'Pakistan',
+    lines: ['263 H1 Johar Town', 'Lahore, PK'],
+    phone: '+92 3 111 119 120',
+    tel: '+923111119120',
   },
 ];
 

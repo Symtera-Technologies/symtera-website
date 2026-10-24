@@ -24,6 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ['/', 1],
     ['/ai', 0.9],
     ['/services', 0.9],
+    ['/cloud', 0.9],
     ['/solutions', 0.8],
     ['/products', 0.8],
     ['/contact', 0.8],

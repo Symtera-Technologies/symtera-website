@@ -12,7 +12,8 @@ import { breadcrumbSchema } from '@/lib/schema';
 
 export const metadata = pageMetadata({
   title: 'Products',
-  description: 'Cloud-based systems for HR, operations, healthcare and property, built and supported by Symtera.',
+  description:
+    'Four cloud systems built and supported by Symtera: SymScan for biometric HR, plus job management, patient management and assets management.',
   path: '/products',
 });
 
