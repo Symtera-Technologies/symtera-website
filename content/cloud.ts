@@ -29,7 +29,7 @@ export const CLOUD_PAGES: ServicePage[] = [
     slug: 'cloud-enterprise-server', seoTitle: 'Cloud Enterprise Server Hosting', nav: 'Cloud Enterprise Server', visual: 'server', icon: 'server',
     seoDescription: 'Scalable, flexible cloud hosting on public cloud or on Symtera’s own Oracle-Linux private cloud, with top-level domain registration alongside it.',
     title: 'Every business needs a', accent: 'versatile hosting service', kicker: 'Cloud Enterprise Server',
-    intro: ['Cloud hosting is very scalable, reliable and flexible in nature. We can provide cloud hosting services on public cloud and Symtera Technologies Private Cloud <b>(Oracle-Linux base)</b>.'],
+    intro: ['Symtera Technologies provides cloud hosting on public cloud and on Symtera Technologies Private Cloud <b>(Oracle-Linux base)</b>. Cloud hosting is scalable, reliable and flexible by nature.'],
     cta: ['Choose a Plan', 'Contact Us'],
     images: ['/services/banner-cloud-services.webp'],
     sections: [{ kind: 'cards', title: 'Introduce Best Services for Business', items: [

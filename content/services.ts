@@ -7,7 +7,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     slug: 'software-development', seoTitle: 'Software Development Services', nav: 'Software Development', visual: 'code', icon: 'code',
     seoDescription: 'Custom web, desktop and mobile software for Windows, Android, iOS and Linux — from requirements through build, test and SLA-backed support.',
     title: 'Ideal Software Solution', accent: 'for Your Business', kicker: 'Our experience boosts your business',
-    intro: ['Symtera Technologies has created multiple web, desktop and mobile applications for clients across the globe.', 'We use open-source, proprietary technologies and framework. Symtera Technologies provides cross platform application for operating systems like Windows, Android, iOS, Linux with excellent performance.'],
+    intro: ['Symtera Technologies has created multiple web, desktop and mobile applications for clients across the globe.', 'We use open-source and proprietary technologies and frameworks. Symtera Technologies provides cross platform application for operating systems like Windows, Android, iOS, Linux with excellent performance.'],
     cta: ['Start a Software Project', 'Contact Us'],
     images: ['/services/header-home4.webp', '/services/image1-home4-768x647-1.webp', '/services/project-8.webp', '/services/image1-service3-1-300x207.webp'],
     sections: [
@@ -35,7 +35,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     slug: 'e-commerce-development', seoTitle: 'E-Commerce Development Services', nav: 'e-Commerce Development', visual: 'cart', icon: 'cart',
     seoDescription: 'Symtera designs, builds and optimises online stores — platform selection, migration from legacy carts, payments, mobile performance and conversion work.',
     title: 'E-Commerce Development Services —', accent: 'Launch &amp; Scale Your Online Store',
-    intro: ['In today’s digital-first economy, your e-commerce platform isn’t just an online store — it’s your most powerful revenue channel. At <b>Symtera Technologies</b>, we design, develop, and optimize e-commerce solutions that turn browsers into buyers and one-time customers into loyal brand advocates. Our team combines deep technical expertise with a data-driven approach to conversion optimization, ensuring your online store doesn’t just look great — it performs.', 'From startup boutiques launching their first online presence to established retailers migrating to modern platforms, we deliver e-commerce solutions that are fast, secure, mobile-optimized, and built to scale with your business.'],
+    intro: ['At <b>Symtera Technologies</b>, we design, develop and optimize e-commerce solutions that turn browsers into buyers and one-time customers into loyal brand advocates. Your e-commerce platform is not just an online store, it is your most powerful revenue channel. Our team combines deep technical expertise with a data-driven approach to conversion optimization, ensuring your online store does not just look great — it performs.', 'From startup boutiques launching their first online presence to established retailers migrating to modern platforms, we deliver e-commerce solutions that are fast, secure, mobile-optimized, and built to scale with your business.'],
     cta: ['Request a Free E-Commerce Consultation', 'Call +1 (646) 505-7083'],
     sections: [
       { kind: 'cards', title: 'E-Commerce Platforms We Build On', items: [
@@ -148,7 +148,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     slug: 'cloud-services', nav: 'Enterprise Cloud Services', visual: 'cloud', icon: 'cloud',
     seoDescription: 'Public, private and hybrid cloud deployment from Symtera Technologies — keeping control of your own data while staying cost-effective.',
     title: 'Cloud', accent: 'Services', kicker: 'Control your precious data',
-    intro: ['Symtera Technologies has expertise in cloud deployment models like public, private and hybrid. Allowing you to control your precious data while remaining cost-effective.'],
+    intro: ['Symtera Technologies has expertise in public, private and hybrid cloud deployment models, allowing you to control your precious data while remaining cost-effective.'],
     cta: ['Start Now', 'Contact Us'],
     sections: [
       { kind: 'cards', title: 'Cloud Service Models', items: [
@@ -165,7 +165,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     slug: 'it-infrastructure', seoTitle: 'IT Infrastructure Services', nav: 'IT Infrastructure', visual: 'infra', icon: 'server',
     seoDescription: 'We audit your existing or planned IT infrastructure, then design and operate a cost-effective, secure setup around what the audit finds.',
     title: 'IT Infrastructure,', accent: 'designed and operated', kicker: 'Effectively manage the IT life-cycle',
-    intro: ['Reliable and Secure IT Infrastructure is a backbone of IT system of any modern organization. We will help your organization to design a cost-effective IT infrastructure after detailed auditing of exiting or newly build IT infrastructure.'],
+    intro: ['Symtera Technologies designs and operates cost-effective, secure IT infrastructure, starting from a detailed audit of what you already run or plan to build. Reliable, secure infrastructure is the backbone of any modern organization’s IT.'],
     cta: ['Plan Your Infrastructure', 'Contact Us'],
     images: ['/services/banner-home7.webp'],
     sections: [
