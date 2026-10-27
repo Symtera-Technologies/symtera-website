@@ -8,7 +8,7 @@ import { ArrowUpRight } from '@/components/ui/Icons';
 import { OrbitScene } from '@/components/visuals/OrbitScene';
 import { pageMetadata } from '@/lib/seo';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { breadcrumbSchema } from '@/lib/schema';
+import { breadcrumbSchema, leadershipSchema } from '@/lib/schema';
 
 export const metadata = pageMetadata({
   title: 'Management Team',
@@ -127,6 +127,7 @@ export default function LeadershipPage() {
   return (
     <>
       <JsonLd data={breadcrumbSchema([['About Us', '/about'], ['Management Team', '/about/leadership']])} />
+      <JsonLd data={leadershipSchema()} />
 
       <section
         style={{
@@ -237,6 +238,9 @@ export default function LeadershipPage() {
           {LEADERSHIP.map((leader) => (
             <article
               key={leader.id}
+              // The Person nodes in leadershipSchema() address each leader by
+              // this fragment, so it has to exist on the page they point at.
+              id={leader.id}
               data-reveal
               data-stack
               style={{
@@ -246,6 +250,7 @@ export default function LeadershipPage() {
                 alignItems: 'start',
                 padding: 'clamp(40px,5vw,72px) 0',
                 borderTop: '1px solid #DCE3EA',
+                scrollMarginTop: 96,
               }}
             >
               <div style={{ position: 'sticky', top: 110 }}>

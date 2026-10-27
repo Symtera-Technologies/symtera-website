@@ -32,8 +32,16 @@ function summarise(intro: string[]): string {
   return first.length > 170 ? `${first.slice(0, 167).trimEnd()}…` : first;
 }
 
+/**
+ * Prefer the page's written description over a slice of its opening line.
+ *
+ * summarise() cuts at the first sentence end, which on pages whose intro opens
+ * with a long clause produced lines that trailed off mid-word — "monthly re…".
+ * A model reading this file to decide what we do deserves the sentence someone
+ * wrote on purpose.
+ */
 const link = (base: string) => (p: AiPage | ServicePage) =>
-  `- [${decode(p.nav)}](${SITE_URL}${base}/${p.slug}): ${summarise(p.intro)}`;
+  `- [${decode(p.nav)}](${SITE_URL}${base}/${p.slug}): ${p.seoDescription ?? summarise(p.intro)}`;
 
 export function GET() {
   const offices = OFFICES.map((o) => `${o.lines.join(', ')} — ${o.phone}`);

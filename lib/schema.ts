@@ -1,10 +1,101 @@
 import { SITE_URL } from './site-url';
 import { SITE_NAME, absoluteUrl } from './seo';
-import { COMPANY, SOCIALS } from '@/content/company';
-import { decode } from './html';
+import { COMPANY, SOCIALS, LEADERSHIP } from '@/content/company';
+import { AI_PAGES } from '@/content/ai';
+import { SERVICE_PAGES } from '@/content/services';
+import { CLOUD_PAGES } from '@/content/cloud';
+import { PRODUCT_PAGES } from '@/content/products';
+import { decode, stripTags } from './html';
 
 const ORG_ID = `${SITE_URL}/#organization`;
 const SITE_ID = `${SITE_URL}/#website`;
+
+/** Stable @id for a named person, so other nodes can point at them. */
+const personId = (id: string) => `${SITE_URL}/about/leadership#${id}`;
+
+/**
+ * What the organization is competent in, read off the pages that prove it
+ * rather than written by hand. A hand-kept list would claim a competence after
+ * the page backing it was renamed or removed.
+ */
+function knowsAbout(): string[] {
+  const names = [
+    ...SERVICE_PAGES.map((p) => p.nav),
+    ...CLOUD_PAGES.map((p) => p.nav),
+    ...AI_PAGES.map((p) => p.nav),
+    ...PRODUCT_PAGES.map((p) => p.nav),
+  ].map((n) => decode(n));
+  return [...new Set(names)];
+}
+
+/**
+ * The service lines as a catalog, pointing at the pages that describe them.
+ * No prices: only the SEO and social-media pages publish a rate, and a catalog
+ * that priced some lines and not others would read as though the rest were
+ * free.
+ */
+function offerCatalog() {
+  const entry = (base: string) => (p: { nav: string; slug: string }) => ({
+    '@type': 'Offer',
+    itemOffered: {
+      '@type': 'Service',
+      name: decode(p.nav),
+      url: `${SITE_URL}${base}/${p.slug}`,
+      provider: { '@id': ORG_ID },
+    },
+  });
+  return {
+    '@type': 'OfferCatalog',
+    name: `${SITE_NAME} services`,
+    itemListElement: [
+      ...SERVICE_PAGES.map(entry('/services')),
+      ...CLOUD_PAGES.map(entry('/cloud')),
+      ...AI_PAGES.map(entry('/ai')),
+    ],
+  };
+}
+
+/**
+ * One Person node per named leader, linked to the organization both ways.
+ *
+ * The leadership page listed two founders with their roles and LinkedIn
+ * profiles in prose only, so nothing tied the company to a real, resolvable
+ * person. `sameAs` against LinkedIn is what lets a search engine or a model
+ * treat them as the same entity it already knows about.
+ */
+export function leadershipSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@graph': LEADERSHIP.map((leader) => ({
+      '@type': 'Person',
+      '@id': personId(leader.id),
+      name: decode(leader.name),
+      jobTitle: decode(leader.role),
+      description: summarise(leader.bio[0] ?? ''),
+      url: `${SITE_URL}/about/leadership#${leader.id}`,
+      worksFor: { '@id': ORG_ID },
+      ...(leader.linkedin ? { sameAs: [leader.linkedin] } : {}),
+    })),
+  };
+}
+
+/**
+ * First sentence of a bio, flattened, for a Person description.
+ *
+ * The first full stop is not reliably the end of the sentence: one bio opens
+ * "Ch. Kashif Talib is the President…", where cutting at the first one yields
+ * the description "Ch.". So a candidate stop only counts once enough of a
+ * sentence has accumulated to be worth having.
+ */
+const MIN_SENTENCE = 40;
+
+function summarise(html: string): string {
+  const text = decode(stripTags(html)).replace(/\s+/g, ' ').trim();
+  for (const m of text.matchAll(/\.\s+/g)) {
+    if (m.index !== undefined && m.index >= MIN_SENTENCE) return text.slice(0, m.index + 1);
+  }
+  return text;
+}
 
 /**
  * Structured postal addresses. The content files hold these as display lines,
@@ -37,6 +128,7 @@ export function organizationSchema() {
         '@type': 'Organization',
         '@id': ORG_ID,
         name: SITE_NAME,
+        alternateName: 'Symtera',
         legalName: COMPANY.legalName,
         url: SITE_URL,
         logo: { '@type': 'ImageObject', url: `${SITE_URL}/symtera-logo.png` },
@@ -44,6 +136,14 @@ export function organizationSchema() {
         foundingDate: String(COMPANY.founded),
         email: COMPANY.email,
         address: ADDRESSES.us,
+        areaServed: [
+          { '@type': 'Country', name: 'United States' },
+          { '@type': 'Country', name: 'Pakistan' },
+        ],
+        /** Both founders are named on /about/leadership and modelled there. */
+        founder: LEADERSHIP.map((l) => ({ '@id': personId(l.id) })),
+        knowsAbout: knowsAbout(),
+        hasOfferCatalog: offerCatalog(),
         sameAs: SOCIALS.map((s) => s.href),
         contactPoint: [
           {
