@@ -40,6 +40,17 @@ export default function ServicePageTemplate({ page, crumb, crumbHref, serviceTyp
   const images = svc.images;
   const kicker = svc.kicker;
 
+  /**
+   * What this page's Service or SoftwareApplication node says it is.
+   *
+   * This used to be intro[0], the page's opening paragraph. On the AI pages
+   * that paragraph is the problem the service solves, not the service, so the
+   * structured data for /ai/ai-chatbots described itself as "Move beyond basic
+   * scripted chatbots." — a slogan a machine can do nothing with. The written
+   * seoDescription says what the service is, so prefer it where there is one.
+   */
+  const schemaDescription = page.seoDescription ?? page.intro[0];
+
   return (
     <>
       <JsonLd
@@ -48,13 +59,13 @@ export default function ServicePageTemplate({ page, crumb, crumbHref, serviceTyp
           svc.applicationCategory
             ? softwareApplicationSchema({
                 name: `${page.title} ${page.accent}`,
-                description: page.intro[0],
+                description: schemaDescription,
                 path,
                 applicationCategory: svc.applicationCategory,
               })
             : serviceSchema({
                 name: `${page.title} ${page.accent}`,
-                description: page.intro[0],
+                description: schemaDescription,
                 path,
                 serviceType: serviceType ?? crumb,
                 // Only ServicePage publishes plans; AI pages have none.
