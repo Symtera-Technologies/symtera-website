@@ -2,7 +2,16 @@
 
 export const COMPANY = {
   name: 'Symtera Technologies',
+  /**
+   * Two real entities trade under the one brand, confirmed by the owner on
+   * 27 Oct 2026: a US LLC and a Pakistani Private Limited. `legalName` is the
+   * US company, which is the group parent — it holds the headquarters address
+   * and this domain. lib/schema.ts models both and links them with
+   * parentOrganization, which is what stops the two names reading as two
+   * unrelated companies.
+   */
   legalName: 'Symtera Technologies LLC',
+  legalNamePk: 'Symtera Technologies Private Limited',
   founded: 2019,
   email: 'sales@symteratech.com',
   tagline: 'Expanding Possibilities',

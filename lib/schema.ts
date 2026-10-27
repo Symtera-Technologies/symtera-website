@@ -6,8 +6,11 @@ import { SERVICE_PAGES } from '@/content/services';
 import { CLOUD_PAGES } from '@/content/cloud';
 import { PRODUCT_PAGES } from '@/content/products';
 import { decode, stripTags } from './html';
+import type { Plans } from '@/content/types';
 
 const ORG_ID = `${SITE_URL}/#organization`;
+/** The Pakistani company. See COMPANY.legalNamePk for why there are two. */
+const ORG_PK_ID = `${SITE_URL}/#organization-pk`;
 const SITE_ID = `${SITE_URL}/#website`;
 
 /** Stable @id for a named person, so other nodes can point at them. */
@@ -142,6 +145,7 @@ export function organizationSchema() {
         ],
         /** Both founders are named on /about/leadership and modelled there. */
         founder: LEADERSHIP.map((l) => ({ '@id': personId(l.id) })),
+        subOrganization: { '@id': ORG_PK_ID },
         knowsAbout: knowsAbout(),
         hasOfferCatalog: offerCatalog(),
         sameAs: SOCIALS.map((s) => s.href),
@@ -162,6 +166,28 @@ export function organizationSchema() {
             availableLanguage: ['en', 'ur'],
           },
         ],
+      },
+      /**
+       * The Pakistani company, as its own node rather than a second name for
+       * the first one.
+       *
+       * Both trade as "Symtera Technologies", and the site says LLC in some
+       * places and Private Limited in others. Left flat, that reads as one
+       * company that cannot keep its own name straight, which weakens the
+       * match for either. Modelled as parent and subsidiary it reads as what
+       * it is: a group with a US parent and a delivery company in Lahore.
+       */
+      {
+        '@type': 'Organization',
+        '@id': ORG_PK_ID,
+        name: SITE_NAME,
+        legalName: COMPANY.legalNamePk,
+        url: SITE_URL,
+        /** Stated on /about: the Private Limited was founded in 2019. */
+        foundingDate: String(COMPANY.founded),
+        address: ADDRESSES.pk,
+        telephone: '+92-3-111-119-120',
+        parentOrganization: { '@id': ORG_ID },
       },
       {
         '@type': 'WebSite',
@@ -204,17 +230,64 @@ export function officesSchema() {
 }
 
 /** A service offering, used on the AI, service, cloud and product sub-pages. */
+/**
+ * The published plans as offers, so the prices already printed on the page are
+ * machine-readable rather than just rendered text.
+ *
+ * Hosting, email, SEO and social media all publish real rates on the page, but
+ * nothing marked them up, so a search engine or a model reading the page had
+ * no structured price for a service that plainly has one. Only plans whose
+ * price parses as a number are included: a plan priced "Custom" is a real
+ * offer but not one that can be stated as a figure.
+ */
+function planOffers(plans: Plans, path: string) {
+  const offers = plans.items.flatMap((p) => {
+    const amount = Number((p.price.match(/[\d.]+/) ?? [])[0]);
+    if (!Number.isFinite(amount)) return [];
+    return [{
+      '@type': 'Offer',
+      name: decode(p.name),
+      price: amount.toFixed(2),
+      priceCurrency: 'USD',
+      url: absoluteUrl(path),
+      availability: 'https://schema.org/InStock',
+      // `per` carries the billing basis, e.g. "Per Monthly Fee (Yearly
+      // Package)" or "Monthly Package of Per Mailbox". Kept verbatim rather
+      // than mapped onto a billing period we would be guessing at.
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        price: amount.toFixed(2),
+        priceCurrency: 'USD',
+        unitText: decode(p.per),
+      },
+    }];
+  });
+  if (offers.length === 0) return undefined;
+  const prices = offers.map((o) => Number(o.price));
+  return {
+    '@type': 'AggregateOffer',
+    priceCurrency: 'USD',
+    lowPrice: Math.min(...prices).toFixed(2),
+    highPrice: Math.max(...prices).toFixed(2),
+    offerCount: offers.length,
+    offers,
+  };
+}
+
 export function serviceSchema({
   name,
   description,
   path,
   serviceType,
+  plans,
 }: {
   name: string;
   description: string;
   path: string;
   serviceType?: string;
+  plans?: Plans;
 }) {
+  const offers = plans ? planOffers(plans, path) : undefined;
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -224,6 +297,7 @@ export function serviceSchema({
     provider: { '@id': ORG_ID },
     areaServed: [{ '@type': 'Country', name: 'United States' }, { '@type': 'Country', name: 'Pakistan' }],
     ...(serviceType ? { serviceType } : {}),
+    ...(offers ? { offers } : {}),
   };
 }
 

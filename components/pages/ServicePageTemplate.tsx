@@ -57,6 +57,8 @@ export default function ServicePageTemplate({ page, crumb, crumbHref, serviceTyp
                 description: page.intro[0],
                 path,
                 serviceType: serviceType ?? crumb,
+                // Only ServicePage publishes plans; AI pages have none.
+                plans: 'plans' in page ? page.plans : undefined,
               })
         }
       />
