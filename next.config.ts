@@ -100,10 +100,21 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       /**
-       * Apache terminates TLS and forwards the original scheme. If it does not
-       * send the header at all this rule never matches, so it cannot loop — but
-       * if it ever sent `http` on an HTTPS request it would, which is why this
-       * one is checked with a curl immediately after the first restart.
+       * Apache terminates TLS and is supposed to forward the original scheme.
+       * Measured against production on 28 Oct 2026: this rule works — a request
+       * carrying `x-forwarded-proto: http` is answered with a 308 to HTTPS —
+       * but Passenger never sets the header, so it never fires on real traffic.
+       *
+       * It cannot loop (an absent header matches nothing) so it stays, and it
+       * starts working the moment Apache is told to send the header:
+       *
+       *   RequestHeader set X-Forwarded-Proto "http"
+       *   RequestHeader set X-Forwarded-Proto "https" env=HTTPS
+       *
+       * The .htaccess RewriteRule added on 28 Oct does redirect plain HTTP, but
+       * only for paths Apache serves itself. Passenger takes the app's routes
+       * before mod_rewrite runs, so every HTML page stayed reachable over
+       * plain HTTP. Static files 301, pages did not.
        */
       {
         source: '/:path*',
