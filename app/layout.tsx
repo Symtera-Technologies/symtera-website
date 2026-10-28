@@ -5,6 +5,7 @@ import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer, { CtaBanner } from '@/components/layout/Footer';
 import Motion from '@/components/ui/Motion';
+import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { SITE_URL } from '@/lib/site-url';
 import { organizationSchema } from '@/lib/schema';
@@ -82,6 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Footer />
         </div>
         <Motion />
+        <GoogleAnalytics />
       </body>
     </html>
   );
