@@ -11,7 +11,7 @@ import { SITE_URL } from '@/lib/site-url';
  * fastest way to teach them to ignore lastmod altogether. Bump it whenever the
  * copy in content/ changes.
  */
-const LAST_CONTENT_CHANGE = new Date('2026-10-01T00:00:00Z');
+const LAST_CONTENT_CHANGE = new Date('2026-10-28T00:00:00Z');
 
 /**
  * Tells search engines about the new URL set, which is what lets them move the
