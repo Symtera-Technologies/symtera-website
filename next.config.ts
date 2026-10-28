@@ -39,13 +39,25 @@ const SECURITY_HEADERS = [
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=()" },
   { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
   /**
-   * Five minutes, with no `includeSubDomains` and no `preload`. A browser that
-   * has seen a long HSTS header cannot reach the site at all if the certificate
-   * later lapses, and this domain renews on a shared host. Raise it once the
-   * redirect below is confirmed and renewal has been watched through one cycle.
-   * Browsers ignore this header over plain HTTP, so sending it always is safe.
+   * Thirty days, with no `includeSubDomains` and no `preload`.
+   *
+   * Raised from five minutes on 28 October 2026, when both conditions the old
+   * comment set were finally met: plain HTTP now 301s to HTTPS on every route
+   * (cPanel's Force HTTPS Redirect, which runs in the vhost ahead of Passenger
+   * -- see the redirect note further down), and the Let's Encrypt certificate
+   * renewed cleanly on 22 October, valid to 20 January 2027.
+   *
+   * Thirty days rather than a year because that is one observed renewal on a
+   * shared host, and a browser that has seen a long HSTS header cannot reach
+   * the site at all if the certificate later lapses. Thirty days already
+   * protects every returning visitor. Go to `max-age=31536000` after the
+   * renewal due around 21 December 2026 lands without help.
+   *
+   * `includeSubDomains` stays off deliberately: other hostnames under this
+   * domain are not all ours to guarantee. Browsers ignore this header over
+   * plain HTTP, so sending it always is safe.
    */
-  { key: "Strict-Transport-Security", value: "max-age=300" },
+  { key: "Strict-Transport-Security", value: "max-age=2592000" },
 ];
 
 const nextConfig: NextConfig = {
@@ -100,21 +112,29 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       /**
-       * Apache terminates TLS and is supposed to forward the original scheme.
-       * Measured against production on 28 Oct 2026: this rule works — a request
-       * carrying `x-forwarded-proto: http` is answered with a 308 to HTTPS —
-       * but Passenger never sets the header, so it never fires on real traffic.
+       * Defence in depth only — plain HTTP is handled in Apache now, not here.
        *
-       * It cannot loop (an absent header matches nothing) so it stays, and it
-       * starts working the moment Apache is told to send the header:
+       * Measured against production on 28 Oct 2026, in this order:
+       *
+       * 1. An .htaccess RewriteRule redirected plain HTTP, but only for paths
+       *    Apache serves itself. Passenger takes the app's routes before
+       *    mod_rewrite runs, so static files 301'd and every HTML page stayed
+       *    reachable over plain HTTP.
+       * 2. This rule was proven to work in isolation — a request carrying
+       *    `x-forwarded-proto: http` is answered with a 308 to HTTPS — but
+       *    Passenger never sets that header, so it never fired on real traffic.
+       *    The scheme was known to Apache and invisible to Node.
+       * 3. cPanel → Domains → Force HTTPS Redirect fixed it. That writes into
+       *    the vhost, which runs ahead of Passenger, so it covers app routes
+       *    too. Every route now 301s to HTTPS in one hop; www takes two.
+       *
+       * So this rule is redundant today. It is kept because it cannot loop (an
+       * absent header matches nothing) and it is the backstop if that cPanel
+       * toggle is ever lost — adding these two lines to .htaccess would also
+       * re-arm it, since mod_headers runs before Passenger takes the request:
        *
        *   RequestHeader set X-Forwarded-Proto "http"
        *   RequestHeader set X-Forwarded-Proto "https" env=HTTPS
-       *
-       * The .htaccess RewriteRule added on 28 Oct does redirect plain HTTP, but
-       * only for paths Apache serves itself. Passenger takes the app's routes
-       * before mod_rewrite runs, so every HTML page stayed reachable over
-       * plain HTTP. Static files 301, pages did not.
        */
       {
         source: '/:path*',
